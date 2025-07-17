@@ -193,13 +193,33 @@ export const HomePageWrapper = styled.div<{ width: number }>`
       height: 100%;
       width: 40%;
 
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+
+      gap: 48px;
+
       z-index: 1;
       background-image: url("/src/shared/constants/images/svg/bubble_2.svg");
       background-repeat: round;
+
+      color: ${colors["light"].brown};
+      font-family: "Montserrat", sans-serif;
+      font-size: ${(props) => (props.width > 768 ? "18px" : "14px")};
+
+      &-padding {
+        padding-left: 78px;
+      }
+
+      &-title {
+        font-size: 24px;
+        font-weight: 500;
+      }
     }
 
     &-20years {
-      width: 301px;
+      width: 21vw;
     }
 
     &-video {
@@ -210,12 +230,16 @@ export const HomePageWrapper = styled.div<{ width: number }>`
       width: 40%;
 
       z-index: 1;
-      /* object-fit: cover;
-      clip-path: url("/src/shared/constants/images/svg/bubble_2_video.svg"); */
-      /* background-image: url("/src/shared/constants/images/svg/bubble_2_video.svg"); */
-      /* background-repeat: round; */
 
       &-clip {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        right: 0;
+        top: 0;
+
+        object-fit: cover;
+        clip-path: url("/src/shared/constants/images/svg/bubble_2_video.svg#blob-mask");
       }
     }
   }

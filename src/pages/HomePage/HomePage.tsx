@@ -85,11 +85,53 @@ const HomePage: React.FC = () => {
         </div>
 
         <div className="block-2">
-          <div className="block-2-text"></div>
+          <div className="block-2-text">
+            <p className="block-2-text-padding block-2-text-title">/О нас</p>
+
+            <p className="block-2-text-padding">
+              Добро пожаловать в <b>Люди! Кухни</b>
+              <br />– семейный бизнес, развивающийся уже
+              <br />
+              <b>в трех поколениях</b>, с собственным
+              <br />
+              производством корпусной мебели.
+              <br />
+              Наша большая команда профессионалов
+              <br />
+              вкладывает душу в каждую деталь, чтобы
+              <br />
+              ваша кухня стала идеальным сочетанием
+              <br />
+              комфорта, стиля и функциональности.
+              <br />
+              <br />
+              Мы изготавливаем как кухни,
+              <br />
+              так и шкафы-купе и мебель для других
+              <br />
+              комнат.{" "}
+              <b>
+                Именно мы поможем
+                <br />и подскажем, как оформить дом
+                <br /> в стиле вашей мечты.
+              </b>
+              <br />В нашем большом каталоге можно найти
+              <br />
+              примеры и вдохновиться перед заказом.
+              <br />
+              <br />
+              Спасибо, что остаетесь с нами.
+              <br />
+              Мы гордимся тем, что создаем мебель,
+              <br />
+              которая делает ваш дом уютнее
+              <br />и удобнее.
+            </p>
+          </div>
           <img
             src="/src/shared/constants/images/svg/20years.svg"
             alt="20 лет"
-            className="block-2-img"
+            className="block-2-20years"
           />
           <div className="block-2-video">
             <video
@@ -97,11 +139,12 @@ const HomePage: React.FC = () => {
               muted
               loop
               playsInline
+              id="animation-advantage"
               className="block-2-video-clip"
             >
               <source
-                src="/src/shared/constants/videos/kuhni1.mov"
-                type="video/quicktime"
+                src="/src/shared/constants/videos/kuhni1.mp4"
+                type="video/mp4"
               />
             </video>
           </div>
