@@ -59,7 +59,7 @@ const HomePage: React.FC = () => {
 
             <div className="block-1-name">
               <img
-                src="/src/shared/constants/images/svg/ludi!kuhni.svg"
+                src="/ludi!kuhni.svg"
                 alt="Название"
                 className="block-1-name-img"
               />
@@ -128,11 +128,7 @@ const HomePage: React.FC = () => {
               <br />и удобнее.
             </p>
           </div>
-          <img
-            src="/src/shared/constants/images/svg/20years.svg"
-            alt="20 лет"
-            className="block-2-20years"
-          />
+          <img src="/20years.svg" alt="20 лет" className="block-2-20years" />
           <div className="block-2-video">
             <video
               autoPlay
@@ -142,10 +138,7 @@ const HomePage: React.FC = () => {
               id="animation-advantage"
               className="block-2-video-clip"
             >
-              <source
-                src="/src/shared/constants/videos/kuhni1.mp4"
-                type="video/mp4"
-              />
+              <source src="/kuhni1.mp4" type="video/mp4" />
             </video>
           </div>
         </div>

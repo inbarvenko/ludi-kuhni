@@ -201,7 +201,7 @@ export const HomePageWrapper = styled.div<{ width: number }>`
       gap: 48px;
 
       z-index: 1;
-      background-image: url("/src/shared/constants/images/svg/bubble_2.svg");
+      background-image: url("/bubble_2.svg");
       background-repeat: round;
 
       color: ${colors["light"].brown};
@@ -239,7 +239,7 @@ export const HomePageWrapper = styled.div<{ width: number }>`
         top: 0;
 
         object-fit: cover;
-        clip-path: url("/src/shared/constants/images/svg/bubble_2_video.svg#blob-mask");
+        clip-path: url("/bubble_2_video.svg#blob-mask");
       }
     }
   }
