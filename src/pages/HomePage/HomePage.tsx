@@ -5,9 +5,11 @@ import { HomePageWrapper } from "./HomePageWrapper";
 import CallIcon from "@mui/icons-material/Call";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-// import Logo from "../../shared/constants/images/svg/logo_1.svg";
 
 import { Button } from "antd";
+import FurnitureBlock from "../../widgets/FurnitureBlock/FurnitureBlock";
+import { details } from "./mock/home.data";
+import DoubleButton from "../../shared/ui/DoubleButton/DoubleButton";
 
 const HomePage: React.FC = () => {
   const width = useMemo(() => {
@@ -40,16 +42,23 @@ const HomePage: React.FC = () => {
       <div className="header-2">
         <img src="/logo_1.svg" alt="Лого" className="logo" />
 
-        <div className="header-2-items">
-          <div className="header-2-text">Кухни</div>
-          <div className="header-2-text">Шкафы</div>
-          <div className="header-2-text">Прихожие</div>
-          <div className="header-2-text">Ванные</div>
-          <div className="header-2-text">Гостинные</div>
-          <div className="header-2-text">Спальни</div>
-          <div className="header-2-text">Детские</div>
-          <div className="header-2-text">Офисная мебель</div>
-        </div>
+        {width > 768 ? (
+          <div className="header-2-items">
+            <div className="header-2-text">Кухни</div>
+            <div className="header-2-text">Шкафы</div>
+            <div className="header-2-text">Прихожие</div>
+            <div className="header-2-text">Ванные</div>
+            <div className="header-2-text">Гостинные</div>
+            <div className="header-2-text">Спальни</div>
+            <div className="header-2-text">Детские</div>
+            <div className="header-2-text">Офисная мебель</div>
+          </div>
+        ) : (
+          <img
+            src="/src/shared/constants/images/svg/burger.svg"
+            className="burger"
+          />
+        )}
       </div>
 
       <div className="content">
@@ -86,60 +95,138 @@ const HomePage: React.FC = () => {
 
         <div className="block-2">
           <div className="block-2-text">
-            <p className="block-2-text-padding block-2-text-title">/О нас</p>
+            <p className="block-2-text-padding block-name">/О нас</p>
 
-            <p className="block-2-text-padding">
+            <p className="block-2-text-padding block-2-text-main">
               Добро пожаловать в <b>Люди! Кухни</b>
               <br />– семейный бизнес, развивающийся уже
               <br />
-              <b>в трех поколениях</b>, с собственным
-              <br />
-              производством корпусной мебели.
-              <br />
-              Наша большая команда профессионалов
-              <br />
-              вкладывает душу в каждую деталь, чтобы
-              <br />
-              ваша кухня стала идеальным сочетанием
-              <br />
+              <b> в трех поколениях</b>, с собственным производством корпусной
+              мебели. Наша большая команда профессионалов вкладывает душу в
+              каждую деталь, чтобы ваша кухня стала идеальным сочетанием
               комфорта, стиля и функциональности.
-              <br />
-              <br />
-              Мы изготавливаем как кухни,
-              <br />
-              так и шкафы-купе и мебель для других
-              <br />
-              комнат.{" "}
-              <b>
-                Именно мы поможем
-                <br />и подскажем, как оформить дом
-                <br /> в стиле вашей мечты.
-              </b>
-              <br />В нашем большом каталоге можно найти
-              <br />
-              примеры и вдохновиться перед заказом.
-              <br />
-              <br />
-              Спасибо, что остаетесь с нами.
-              <br />
-              Мы гордимся тем, что создаем мебель,
-              <br />
-              которая делает ваш дом уютнее
-              <br />и удобнее.
+              {width > 768 && (
+                <>
+                  <br />
+                  <br />
+                  Мы изготавливаем как кухни,
+                  {/* <br /> */}
+                  так и шкафы-купе и мебель для других
+                  {/* <br /> */}
+                  комнат.
+                  <b>
+                    Именно мы поможем и подскажем, как оформить дом в стиле
+                    вашей мечты.
+                  </b>
+                  В нашем большом каталоге можно найти
+                  {/* <br /> */}
+                  примеры и вдохновиться перед заказом.
+                  <br />
+                  <br />
+                  Спасибо, что остаетесь с нами.
+                  {/* <br /> */}
+                  Мы гордимся тем, что создаем мебель,
+                  {/* <br /> */}
+                  которая делает ваш дом уютнее и удобнее.
+                </>
+              )}
             </p>
+
+            {width < 768 && <p className="block-2-text-more">Подробнее →</p>}
           </div>
-          <img src="/20years.svg" alt="20 лет" className="block-2-20years" />
-          <div className="block-2-video">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              id="animation-advantage"
-              className="block-2-video-clip"
-            >
-              <source src="/kuhni1.mp4" type="video/mp4" />
-            </video>
+
+          {width > 768 ? (
+            <>
+              <img
+                src="/20years.svg"
+                alt="20 лет"
+                className="block-2-20years"
+              />
+              <div className="block-2-video">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  id="animation-advantage"
+                  className="block-2-video-clip"
+                >
+                  <source src="/kuhni1.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </>
+          ) : (
+            <img
+              src="/20yearc_line.svg"
+              alt="20 лет"
+              className="block-2-20years-line"
+            />
+          )}
+        </div>
+
+        <div className="block-3">
+          <p className="block-name">/Мы производим</p>
+
+          <FurnitureBlock width={width} />
+        </div>
+
+        {width > 768 && (
+          <div className="marquee-content">
+            <img src="/firms.svg" alt="firms" className="marquee" />
+          </div>
+        )}
+
+        <div className="block-4">
+          <div className="block-name">/ Как мы работаем</div>
+
+          <div className="block-4-text">
+            <div className="block-4-text-wrapper">
+              <div>
+                <div className="block-4-text-main">
+                  Пройдите <span className="block-4-text-span">вместе</span>
+                  <br />с нами все этапы работы
+                  <br />
+                  над проектом <span className="block-4-text-span">.</span>
+                </div>
+
+                {width > 768 && (
+                  <div className="block-4-text-sub">
+                    Мы контролируем качество выполнения работ на всех
+                    этапах,потому что в создании корпусной мебели не бывает
+                    несущественных моментов. Это дает гарантию того, что
+                    полученный результат выполненного ремонта будет полностью
+                    соответствовать запланированному нами в дизайн-проекте.
+                  </div>
+                )}
+              </div>
+
+              {width > 768 && <DoubleButton width={width} />}
+            </div>
+
+            <div className="block-4-details">
+              {/* <div> */}
+              {details.map((item, index) => {
+                return (
+                  <div className="block-4-details-item">
+                    <div className="block-4-details-number">{`/${
+                      index + 1
+                    }`}</div>
+
+                    <div className="block-4-details-text">
+                      <div className="block-4-details-text-name">
+                        {item.name}
+                      </div>
+                      <div className="block-4-details-text-desc">
+                        {item.more}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+              {/* </div> */}
+            </div>
+
+            {width < 768 && <DoubleButton width={width} />}
           </div>
         </div>
       </div>
