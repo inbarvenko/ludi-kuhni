@@ -10,6 +10,7 @@ import { Button } from "antd";
 import FurnitureBlock from "../../widgets/FurnitureBlock/FurnitureBlock";
 import { details } from "./mock/home.data";
 import DoubleButton from "../../shared/ui/DoubleButton/DoubleButton";
+import FaqBlock from "../../widgets/FaqBlock/FaqBlock";
 
 const HomePage: React.FC = () => {
   const width = useMemo(() => {
@@ -177,7 +178,7 @@ const HomePage: React.FC = () => {
         )}
 
         <div className="block-4">
-          <div className="block-name">/ Как мы работаем</div>
+          <p className="block-name">/ Как мы работаем</p>
 
           <div className="block-4-text">
             <div className="block-4-text-wrapper">
@@ -227,6 +228,78 @@ const HomePage: React.FC = () => {
             </div>
 
             {width < 768 && <DoubleButton width={width} />}
+          </div>
+        </div>
+
+        <div className="block-5">
+          <p className="block-name padding">/ Часто задаваемые вопросы</p>
+
+          <div className="block-5-wrapper">
+            {width > 768 && (
+              <img
+                src="/faq.svg"
+                alt="Часто задаваемые вопросы"
+                className="block-5-img"
+              />
+            )}
+
+            {/* <div className="block-5-questions"></div> */}
+            <FaqBlock width={width} />
+          </div>
+        </div>
+
+        <div className="block-6">
+          <p className="block-name">/ Контакты</p>
+
+          <div className="block-6-wrapper">
+            <div className="block-6-map_wrapper">
+              <div className="block-6-map">
+                <iframe
+                  className="block-6-map-iframe"
+                  src="https://yandex.ru/maps-reviews-widget/1086674394?comments"
+                ></iframe>
+                <a
+                  href="https://yandex.ru/maps/org/lyudi_i_kukhni/1086674394/"
+                  target="_blank"
+                  className="block-6-map-link"
+                >
+                  Люди и кухни на карте Таганрога — Яндекс Карты
+                </a>
+              </div>
+
+              <img
+                src="/green_blob.svg"
+                alt="blob"
+                className="block-6-map-blob-1"
+              />
+
+              <img
+                src="/green_blob.svg"
+                alt="blob"
+                className="block-6-map-blob-2"
+              />
+            </div>
+
+            {width >= 1280 && (
+              <div className="block-6-text_wrapper">
+                <div className="block-6-text">
+                  Оставь свой отзыв
+                  <br />и помоги нам
+                  <br />
+                  <b>стать лучше</b>
+                  <img
+                    src="/green_blob.svg"
+                    alt="blob"
+                    className="block-6-text-blob"
+                  />
+                  <img
+                    src="/arrow_green.svg"
+                    alt="blob"
+                    className="block-6-text-arrow"
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

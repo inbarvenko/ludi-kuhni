@@ -22,7 +22,7 @@ const DoubleButtonWrapper = styled.div<{ width: number }>`
     width: 80%;
 
     font-size: ${({ width }) => (width > 768 ? "28px" : "14px")};
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .two {
