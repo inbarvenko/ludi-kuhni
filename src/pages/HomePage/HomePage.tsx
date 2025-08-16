@@ -8,8 +8,11 @@ import DoubleButton from "../../shared/ui/DoubleButton/DoubleButton";
 import FaqBlock from "../../widgets/FaqBlock/FaqBlock";
 import ContactBlock from "../../features/ContactBlock/ContactBlock";
 import { RoomsBlock } from "../../widgets/RoomsBlock/RoomsBlock";
+import ContactModal from "../../widgets/ContactModal/ContactModal";
 
 const HomePage: React.FC = () => {
+  const [isContactModalOpen, setIsContactModalOpen] = React.useState(false);
+
   const width = useMemo(() => {
     return window.innerWidth;
   }, []);
@@ -17,6 +20,13 @@ const HomePage: React.FC = () => {
   return (
     <HomePageWrapper width={width}>
       <Helmet title="Главная страница" />
+
+      {isContactModalOpen && (
+        <ContactModal
+          isOpen={isContactModalOpen}
+          onClose={() => setIsContactModalOpen(false)}
+        />
+      )}
 
       <div className="content">
         <div className="block-1">
@@ -38,7 +48,13 @@ const HomePage: React.FC = () => {
             </div>
 
             <div className="block-1-buttons">
-              <Button className="block-1-buttons-1">Написать</Button>
+              <Button
+                className="block-1-buttons-1"
+                onClick={() => setIsContactModalOpen(true)}
+              >
+                Написать
+              </Button>
+
               <Button
                 className="block-1-buttons-2"
                 color="default"
@@ -158,7 +174,12 @@ const HomePage: React.FC = () => {
                 )}
               </div>
 
-              {width > 768 && <DoubleButton width={width} />}
+              {width > 768 && (
+                <DoubleButton
+                  width={width}
+                  onClick={() => setIsContactModalOpen(true)}
+                />
+              )}
             </div>
 
             <div className="block-4-details">
@@ -184,7 +205,12 @@ const HomePage: React.FC = () => {
               {/* </div> */}
             </div>
 
-            {width < 768 && <DoubleButton width={width} />}
+            {width < 768 && (
+              <DoubleButton
+                width={width}
+                onClick={() => setIsContactModalOpen(true)}
+              />
+            )}
           </div>
         </div>
 
