@@ -4,6 +4,8 @@ import CallIcon from "@mui/icons-material/Call";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { ContentWrapper } from "./ContentWrapper";
+import { useQuery } from "@tanstack/react-query";
+import { getRooms } from "../../widgets/RoomsBlock/api/getRooms";
 
 const Content: React.FC = () => {
   const navigate = useNavigate();
@@ -12,13 +14,18 @@ const Content: React.FC = () => {
     return window.innerWidth;
   }, []);
 
-  const onCatalogueClick = () => {
-    navigate("/catalog");
+  const onCatalogueClick = (id: number) => {
+    navigate("/catalog?id=" + id);
   };
 
   const onHomeClick = () => {
     navigate("/");
   };
+
+  const { data: rooms } = useQuery({
+    queryKey: ["rooms"], // Уникальный ключ для кэша
+    queryFn: getRooms,
+  });
 
   return (
     <ContentWrapper width={width}>
@@ -52,7 +59,16 @@ const Content: React.FC = () => {
 
           {width > 768 ? (
             <div className="header-2-items">
-              <div className="header-2-text" onClick={onCatalogueClick}>
+              {rooms?.map((item) => (
+                <div
+                  className="header-2-text"
+                  onClick={() => onCatalogueClick(item.id || 1)}
+                >
+                  {item.name}
+                </div>
+              ))}
+
+              {/* <div className="header-2-text" onClick={onCatalogueClick}>
                 Кухни
               </div>
               <div className="header-2-text">Шкафы</div>
@@ -61,7 +77,7 @@ const Content: React.FC = () => {
               <div className="header-2-text">Гостинные</div>
               <div className="header-2-text">Спальни</div>
               <div className="header-2-text">Детские</div>
-              <div className="header-2-text">Офисная мебель</div>
+              <div className="header-2-text">Офисная мебель</div> */}
             </div>
           ) : (
             <img

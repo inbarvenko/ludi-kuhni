@@ -26,11 +26,11 @@ const FaqBlock: React.FC<Props> = ({ width }: Props) => {
   return (
     <FaqBlockWrapper width={width}>
       {questions.map((item, index) => (
-        <>
+        <div key={index}>
           <Question width={width} key={index} question={item} />
 
           {index + 1 < questions.length && <Divider className="divider" />}
-        </>
+        </div>
       ))}
     </FaqBlockWrapper>
   );

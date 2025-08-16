@@ -46,9 +46,6 @@ const QuestionWrapper = styled.div<{ width: number; active: boolean }>`
   }
 
   .close-button {
-    height: 24px;
-    width: 24px;
-
     cursor: pointer;
     padding: 2px;
     transition: transform 0.3s ease-in-out;

@@ -165,7 +165,7 @@ const HomePage: React.FC = () => {
               {/* <div> */}
               {details.map((item, index) => {
                 return (
-                  <div className="block-4-details-item">
+                  <div key={index} className="block-4-details-item">
                     <div className="block-4-details-number">{`/${
                       index + 1
                     }`}</div>

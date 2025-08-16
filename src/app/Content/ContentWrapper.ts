@@ -11,9 +11,11 @@ export const ContentWrapper = styled.div<{ width: number }>`
 
   .logo {
     max-width: ${(props) => (props.width > 768 ? "64px" : "45px")};
-    /* padding: 0 48px 0 0; */
+    transform-origin: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    :hover {
+    &:hover {
+      transform: translateY(-2px) scale(1.02);
       cursor: pointer;
     }
   }

@@ -8,8 +8,31 @@ export const RoomBlockWrapper = styled.div<{ width: number }>`
   width: ${(props) => (props.width > 768 ? "303px" : "40vw")};
   height: ${(props) => (props.width > 768 ? "303px" : "40vw")};
 
-  :hover {
+  transform-origin: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
     transform: translateY(-8px) scale(1.02);
+    cursor: pointer;
+
+    .hov {
+      opacity: 1;
+    }
+  }
+
+  .hov {
+    opacity: 0;
+  }
+
+  .block {
+    width: 100%;
+    margin: 10px;
+
+    z-index: 3;
+
+    img {
+      width: 100%;
+    }
   }
 
   .title {

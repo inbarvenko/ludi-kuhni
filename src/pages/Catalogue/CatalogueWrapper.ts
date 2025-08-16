@@ -16,6 +16,24 @@ export const CatalogueWrapper = styled.div`
     color: ${colors["light"].accent_green} !important;
   }
 
+  .filter-main {
+    font-size: 16px;
+    color: ${colors["light"].main_blue};
+    margin-bottom: 15px;
+  }
+
+  .category {
+    &:hover {
+      cursor: pointer;
+      color: ${colors["light"].accent_green};
+    }
+
+    &-active {
+      color: ${colors["light"].accent_green};
+      font-weight: 600;
+    }
+  }
+
   .badge {
     background-color: ${colors["light"].accent_green};
     color: ${colors["light"].white};
