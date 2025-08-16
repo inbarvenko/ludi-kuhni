@@ -1,9 +1,10 @@
+@import "tailwindcss";
+
 #root {
   width: 100vw;
   padding: 0;
   margin: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
 
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
@@ -11,43 +12,65 @@
   font-style: normal;
 }
 
+.text-accent {
+  font-family: "MakLight";
+  font-weight: 600;
+  font-size: 30px;
+}
+
 p {
   margin: 0;
   padding: 0;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.mak {
+  font-family: "Mak";
+  font-weight: 600;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+a,
+span,
+label,
+h3 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+button:focus,
+.border {
+  outline: none;
+  border: none;
 }
 
-.card {
-  padding: 2em;
+/* Для вебкит-браузеров: Chrome, Safari и новых версий Edge */
+::-webkit-scrollbar {
+  width: 8px; /* Ширина полосы прокрутки */
 }
 
-.read-the-docs {
-  color: #888;
+/* Дорожка полосы прокрутки */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Цвет дорожки */
+  border-radius: 10px; /* Скругление углов дорожки */
+}
+
+/* Ползунок полосы прокрутки */
+::-webkit-scrollbar-thumb {
+  background: #79bf3a; /* Цвет ползунка */
+  border-radius: 10px; /* Скругление углов ползунка */
+}
+
+/* Ползунок при наведении */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Цвет ползунка при наведении */
+}
+
+/* Для Firefox */
+* {
+  scrollbar-width: thin; /* Автоматически делает полосу прокрутки тонкой */
+  scrollbar-color: #79bf3a #f1f1f1; /* Цвет ползунка и дорожки */
 }

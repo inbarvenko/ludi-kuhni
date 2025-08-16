@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import { colors } from "../../shared/constants/colors";
 
-export const FurnitureWrapper = styled.div<{ width: number }>`
+export const RoomBlockWrapper = styled.div<{ width: number }>`
   display: flex;
   position: relative;
 
   width: ${(props) => (props.width > 768 ? "303px" : "40vw")};
   height: ${(props) => (props.width > 768 ? "303px" : "40vw")};
 
-  .img {
+  :hover {
+    transform: translateY(-8px) scale(1.02);
   }
 
   .title {

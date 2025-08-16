@@ -14,73 +14,6 @@ export const HomePageWrapper = styled.div<{ width: number }>`
     max-width: ${(props) => (props.width > 768 ? "20px" : "16px")};
   }
 
-  .logo {
-    max-width: ${(props) => (props.width > 768 ? "64px" : "45px")};
-    padding: 0 48px 0 0;
-  }
-
-  .header {
-    &-1 {
-      max-width: 100%;
-      min-height: 54px;
-
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      gap: ${(props) => (props.width > 768 ? "24px" : "18px")};
-      padding-left: ${(props) => (props.width > 768 ? "78px" : "24px")};
-      padding-right: ${(props) => (props.width > 768 ? "78px" : "24px")};
-
-      background-color: ${colors["light"].light_beige};
-
-      &-item {
-        display: flex;
-        flex-direction: row;
-        gap: ${(props) => (props.width > 768 ? "2px" : "0")};
-        align-items: center;
-        text-align: center;
-      }
-
-      &-text {
-        display: ${(props) => (props.width > 768 ? "flex" : "none")};
-
-        font-family: "Montserrat", sans-serif;
-        font-size: ${(props) => (props.width > 768 ? "14px" : "12px")};
-        color: ${colors["light"].brown};
-      }
-    }
-
-    &-2 {
-      padding: ${(props) => (props.width > 768 ? "0 78px" : "0 24px")};
-      max-width: 100%;
-      height: ${(props) => (props.width > 768 ? "89px" : "65px")};
-
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: ${(props) =>
-        props.width > 768 ? "flex-start" : "space-between"};
-
-      background-color: ${colors["light"].white};
-
-      &-text {
-        color: ${colors["light"].main_blue};
-        font-weight: 600;
-      }
-
-      &-items {
-        display: ${(props) => (props.width > 768 ? "flex" : "none")};
-        flex-direction: row;
-        gap: 24px;
-        align-items: center;
-        text-align: center;
-
-        padding-left: ${(props) => (props.width > 768 ? "78px" : "24px")};
-        padding-right: ${(props) => (props.width > 768 ? "78px" : "24px")};
-      }
-    }
-  }
-
   .content {
     display: flex;
     flex-direction: column;
@@ -92,12 +25,17 @@ export const HomePageWrapper = styled.div<{ width: number }>`
   }
 
   .block-1 {
-    min-height: 350px;
-    background-size: cover;
-    background-position: center; /* Это свойство позволяет выбрать, какую часть изображения оставить видимой */
-    background-repeat: no-repeat; /* Отключаем повторение фона */
+    height: 100%;
+    min-height: 80vh;
+    overflow: hidden;
+    background-size: 100% auto; /* Растягивает по ширине, сохраняет пропорции по высоте */
+    background-position: center;
+    background-repeat: no-repeat;
     z-index: 1;
     background-image: url(${ill});
+
+    display: flex;
+    align-items: center;
 
     &-buttons {
       margin-top: ${(props) => (props.width > 768 ? "48px" : "18px")};
@@ -141,8 +79,6 @@ export const HomePageWrapper = styled.div<{ width: number }>`
     &-info {
       position: relative;
       width: ${(props) => (props.width > 768 ? "687px" : "300px")};
-      left: ${(props) => (props.width > 768 ? "20px" : "10px")};
-      top: ${(props) => (props.width > 768 ? "40px" : "30px")};
       height: ${(props) => (props.width > 768 ? "600px" : "300px")};
 
       display: flex;
@@ -220,10 +156,11 @@ export const HomePageWrapper = styled.div<{ width: number }>`
 
       z-index: 1;
       background-image: url("/bubble_2.svg");
-      background-repeat: ${(props) => (props.width > 768 ? "round" : "repeat")};
+      background-repeat: ${(props) =>
+        props.width > 768 ? "no-repeat" : "repeat"};
       /* background-size: cover; */
       background-size: ${(props) =>
-        props.width > 768 ? "auto 100%" : "cover"};
+        props.width > 768 ? "100% auto" : "cover"};
 
       color: ${colors["light"].brown};
       font-family: "Montserrat", sans-serif;
@@ -248,7 +185,8 @@ export const HomePageWrapper = styled.div<{ width: number }>`
     }
 
     &-20years {
-      width: 21vw;
+      width: 20vw;
+      max-width: 350px;
 
       &-line {
         width: 90%;
@@ -305,7 +243,7 @@ export const HomePageWrapper = styled.div<{ width: number }>`
 
   .marquee-content {
     display: inline-flex;
-    animation: marquee 20s linear infinite; /* Длительность анимации 20 секунд */
+    animation: marquee 40s linear infinite; /* Длительность анимации 20 секунд */
   }
 
   .marquee-content img,

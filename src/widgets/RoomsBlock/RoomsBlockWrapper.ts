@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FurnitureBlockWrapper = styled.div`
+const RoomsBlockWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 24px;
@@ -10,4 +10,4 @@ const FurnitureBlockWrapper = styled.div`
   align-items: center;
 `;
 
-export default FurnitureBlockWrapper;
+export default RoomsBlockWrapper;

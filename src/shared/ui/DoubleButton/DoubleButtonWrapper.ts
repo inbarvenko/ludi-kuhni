@@ -7,20 +7,26 @@ const DoubleButtonWrapper = styled.div<{ width: number }>`
   display: flex;
   flex-direction: row;
 
+  &:hover .button {
+    background-color: ${colors["light"]
+      .accent_green_hover}; /* Более темный цвет при наведении на любой из блоков */
+  }
+
   .button {
+    cursor: pointer;
+
     height: 100%;
     background-color: ${colors["light"].accent_green};
     color: ${colors["light"].white};
     border-radius: ${({ width }) => (width > 768 ? "20px" : "8px")};
-
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.3s ease;
   }
 
   .one {
     width: 80%;
-
     font-size: ${({ width }) => (width > 768 ? "28px" : "14px")};
     font-weight: 500;
   }

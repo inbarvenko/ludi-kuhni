@@ -2,15 +2,12 @@ import React, { useMemo } from "react";
 import { Helmet } from "react-helmet";
 import { HomePageWrapper } from "./HomePageWrapper";
 
-import CallIcon from "@mui/icons-material/Call";
-import WatchLaterIcon from "@mui/icons-material/WatchLater";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-
 import { Button } from "antd";
-import FurnitureBlock from "../../widgets/FurnitureBlock/FurnitureBlock";
 import { details } from "./mock/home.data";
 import DoubleButton from "../../shared/ui/DoubleButton/DoubleButton";
 import FaqBlock from "../../widgets/FaqBlock/FaqBlock";
+import ContactBlock from "../../features/ContactBlock/ContactBlock";
+import { RoomsBlock } from "../../widgets/RoomsBlock/RoomsBlock";
 
 const HomePage: React.FC = () => {
   const width = useMemo(() => {
@@ -20,47 +17,6 @@ const HomePage: React.FC = () => {
   return (
     <HomePageWrapper width={width}>
       <Helmet title="Главная страница" />
-
-      <div className="header-1">
-        <div className="header-1-item">
-          <CallIcon className="icon" />
-          <div className="header-1-text">
-            +7 (863) 431-47-07, +7 (863) 431-17-07
-          </div>
-        </div>
-
-        <div className="header-1-item">
-          <WatchLaterIcon className="icon" />
-          <div className="header-1-text">Пн-Сб 10:00 - 19:00</div>
-        </div>
-
-        <div className="header-1-item">
-          <LocationOnIcon className="icon" />
-          <div className="header-1-text">г. Таганрог, ул. Петровская 15</div>
-        </div>
-      </div>
-
-      <div className="header-2">
-        <img src="/logo_1.svg" alt="Лого" className="logo" />
-
-        {width > 768 ? (
-          <div className="header-2-items">
-            <div className="header-2-text">Кухни</div>
-            <div className="header-2-text">Шкафы</div>
-            <div className="header-2-text">Прихожие</div>
-            <div className="header-2-text">Ванные</div>
-            <div className="header-2-text">Гостинные</div>
-            <div className="header-2-text">Спальни</div>
-            <div className="header-2-text">Детские</div>
-            <div className="header-2-text">Офисная мебель</div>
-          </div>
-        ) : (
-          <img
-            src="/src/shared/constants/images/svg/burger.svg"
-            className="burger"
-          />
-        )}
-      </div>
 
       <div className="content">
         <div className="block-1">
@@ -168,11 +124,12 @@ const HomePage: React.FC = () => {
         <div className="block-3">
           <p className="block-name">/Мы производим</p>
 
-          <FurnitureBlock width={width} />
+          <RoomsBlock width={width} />
         </div>
 
         {width > 768 && (
           <div className="marquee-content">
+            <img src="/firms.svg" alt="firms" className="marquee" />
             <img src="/firms.svg" alt="firms" className="marquee" />
           </div>
         )}
@@ -300,6 +257,28 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
             )}
+          </div>
+        </div>
+
+        <div
+          id="map"
+          style={{ width: "100%", height: "100%", position: "relative" }}
+        >
+          <div style={{ position: "relative", overflow: "hidden" }}>
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?ll=38.936850%2C47.207398&mode=usermaps&source=constructorLink&um=constructor%3Ad1a5893aac5359b75107c15a65c9184e3bebff8fcf41061271f3a2674e1830c4&z=16"
+              width="100%"
+              height="400"
+              // frameBorder="1"
+              allowFullScreen={true}
+              style={{ position: "relative", height: "70vh" }}
+            ></iframe>
+          </div>
+
+          <div className="bg-gray-50 flex items-center justify-center p-4 absolute z-10 top-1/30 left-1/30 ">
+            <div className="relative ">
+              <ContactBlock />
+            </div>
           </div>
         </div>
       </div>
