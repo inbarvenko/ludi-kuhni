@@ -233,7 +233,7 @@ export default function ContactModal({
                   htmlFor="email"
                   className="flex items-center gap-2 font-['Montserrat'] font-medium text-[#0f0449]"
                 >
-                  <Mail className="h-4 w-4 text-gray-500" />
+                  <Mail className="h-4 w-4 text-green-600" />
                   Почта
                 </label>
                 <div className="relative">
@@ -270,7 +270,7 @@ export default function ContactModal({
                   htmlFor="message"
                   className="flex items-center gap-2 font-['Montserrat'] font-medium text-[#0f0449]"
                 >
-                  <MessageSquare className="h-4 w-4 text-gray-500" />
+                  <MessageSquare className="h-4 w-4 text-green-600" />
                   Сообщение
                 </label>
                 <textarea

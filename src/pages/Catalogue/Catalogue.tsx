@@ -14,8 +14,11 @@ import { getFurniture } from "./api/getFurniture";
 import type { FilterValueType } from "../../features/RoomBlock/types";
 import { colors } from "../../shared/constants/colors";
 
+const initialValue = { id: 2, name: "Кухни" };
+
 export function CatalogPage() {
-  const [selectedCategory, setSelectedCategory] = useState<number>(2);
+  const [selectedCategory, setSelectedCategory] =
+    useState<FilterValueType>(initialValue);
   const [selectedStyles, setSelectedStyles] = useState<FilterValueType[]>([]);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [favorites, setFavorites] = useState<number[]>([]);
@@ -27,15 +30,15 @@ export function CatalogPage() {
   });
 
   const selectedRoom = useMemo(() => {
-    return rooms?.find((room) => room.id === selectedCategory);
+    return rooms?.find((room) => room.id === selectedCategory.id);
   }, [rooms, selectedCategory]);
 
   const { data: furniture, isLoading } = useQuery({
-    queryKey: [`furniture?=${selectedCategory}`], // Уникальный ключ для кэша
-    queryFn: () => getFurniture({ roomId: selectedCategory }),
+    queryKey: [`furniture?=${selectedCategory.id}`], // Уникальный ключ для кэша
+    queryFn: () => getFurniture({ roomId: selectedCategory.id }),
   });
 
-  const handleCategoryToggle = (category: number) => {
+  const handleCategoryToggle = (category: FilterValueType) => {
     setSelectedCategory(category);
   };
 
@@ -53,7 +56,7 @@ export function CatalogPage() {
 
   const removeFilter = (type: "category" | "style", value: number) => {
     if (type === "category") {
-      setSelectedCategory(1);
+      setSelectedCategory(initialValue);
     } else {
       setSelectedStyles((prev) => prev.filter((s) => s.id !== value));
     }
@@ -132,11 +135,11 @@ export function CatalogPage() {
           <div className="flex flex-wrap gap-2">
             {selectedCategory && (
               <div
-                key={selectedCategory}
+                key={selectedCategory.id}
                 className="badge"
                 // onClick={() => removeFilter("category", selectedCategory)}
               >
-                Категория: {selectedCategory}
+                Категория: {selectedCategory.name}
                 <X size={14} />
               </div>
             )}
@@ -187,7 +190,7 @@ export function CatalogPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex gap-8">
           {/* Sidebar Filters */}
           {showFilters && (
@@ -207,13 +210,19 @@ export function CatalogPage() {
                         {rooms?.map((room, index) => (
                           <div
                             key={index}
-                            onClick={() => handleCategoryToggle(room.id || 1)}
+                            onClick={() =>
+                              room.id &&
+                              handleCategoryToggle({
+                                id: room.id,
+                                name: room.name,
+                              })
+                            }
                             className="flex items-center gap-[5px]"
                           >
                             <label
                               // htmlFor={room.}
                               className={`text-sm cursor-pointer text-gray-700 category  ${
-                                selectedCategory === room.id &&
+                                selectedCategory.id === room.id &&
                                 "category-active"
                               }`}
                             >
