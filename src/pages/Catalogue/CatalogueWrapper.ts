@@ -22,6 +22,14 @@ export const CatalogueWrapper = styled.div`
     margin-bottom: 15px;
   }
 
+  .card-text {
+    font-size: 12px;
+
+    &-main {
+      font-size: 16px;
+    }
+  }
+
   .category {
     &:hover {
       cursor: pointer;

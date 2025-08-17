@@ -3,7 +3,7 @@ import { colors } from "../../constants/colors";
 
 const DoubleButtonWrapper = styled.div<{ width: number }>`
   width: 100%;
-  height: ${({ width }) => (width > 768 ? "84px" : "42px")};
+  height: ${({ width }) => (width > 768 ? "56px" : "42px")};
   display: flex;
   flex-direction: row;
 
@@ -18,7 +18,7 @@ const DoubleButtonWrapper = styled.div<{ width: number }>`
     height: 100%;
     background-color: ${colors["light"].accent_green};
     color: ${colors["light"].white};
-    border-radius: ${({ width }) => (width > 768 ? "20px" : "8px")};
+    border-radius: ${({ width }) => (width > 768 ? "15px" : "8px")};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,7 +27,7 @@ const DoubleButtonWrapper = styled.div<{ width: number }>`
 
   .one {
     width: 80%;
-    font-size: ${({ width }) => (width > 768 ? "28px" : "14px")};
+    font-size: ${({ width }) => (width > 768 ? "24px" : "14px")};
     font-weight: 500;
   }
 
@@ -36,7 +36,7 @@ const DoubleButtonWrapper = styled.div<{ width: number }>`
   }
 
   .icon2 {
-    font-size: ${({ width }) => (width > 768 ? "54px" : "28px")};
+    font-size: ${({ width }) => (width > 768 ? "42px" : "24px")};
   }
 `;
 

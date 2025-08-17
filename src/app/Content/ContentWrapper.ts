@@ -40,6 +40,7 @@ export const ContentWrapper = styled.div<{ width: number }>`
         gap: ${(props) => (props.width > 768 ? "2px" : "0")};
         align-items: center;
         text-align: center;
+        color: ${colors["light"].brown};
       }
 
       &-text {

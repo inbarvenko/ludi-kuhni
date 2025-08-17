@@ -111,7 +111,7 @@ export default function ContactModal({
       />
 
       {/* Modal */}
-      <div className="relative bg-gradient-to-br from-white to-gray-50 rounded-[30px] shadow-2xl max-w-md w-full mx-4 overflow-hidden border-0 animate-bounce-in">
+      <div className="relative bg-gradient-to-br from-white to-gray-50 rounded-[30px] shadow-2xl max-w-md w-full mx-4 overflow-hidden border-0 animate-bounce-in z-100000">
         {/* Premium accent line */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 via-green-500 to-green-600" />
 
@@ -205,6 +205,7 @@ export default function ContactModal({
                     id="phone"
                     type="tel"
                     value={formData.phone}
+                    pattern="^[+]?[0-9\s\-()]{10,}$"
                     onChange={(e) => handleInputChange("phone", e.target.value)}
                     className={`
                       w-full px-4 py-3 rounded-[15px] border-2 transition-all duration-200 s12

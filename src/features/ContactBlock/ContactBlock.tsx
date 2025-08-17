@@ -104,13 +104,13 @@ function ContactItem({
       {icon}
       <div className="box-border content-stretch flex flex-col gap-3 items-start justify-start leading-[0] p-0 relative shrink-0 text-[#0f0449] text-left">
         <div
-          className="font-['Montserrat:Medium',_sans-serif] font-medium min-w-full relative shrink-0 text-[16px]"
+          className="font-['Montserrat',_sans-serif] font-medium min-w-full relative shrink-0 text-[16px]"
           style={{ width: "min-content" }}
         >
           <p className="block leading-[normal]">{title}</p>
         </div>
         <div
-          className={`font-['Montserrat:Regular',_sans-serif] font-normal relative shrink-0 text-[14px] ${
+          className={`font-['Montserrat',_sans-serif] font-normal relative shrink-0 text-[14px] ${
             isClickable ? "" : "text-nowrap"
           }`}
         >
@@ -127,7 +127,7 @@ function ContactItem({
 
 function PhoneNumbers() {
   return (
-    <div className="box-border content-stretch flex flex-row font-['Montserrat:Regular',_sans-serif] font-normal gap-3 items-start justify-start leading-[0] p-0 relative shrink-0 text-[#0f0449] text-[14px] text-left text-nowrap">
+    <div className="box-border content-stretch flex flex-row font-['Montserrat',_sans-serif] font-normal gap-3 items-start justify-start leading-[0] p-0 relative shrink-0 text-[#0f0449] text-[14px] text-left text-nowrap">
       <div className="relative shrink-0">
         <a
           href="tel:+78634311707"
@@ -154,7 +154,7 @@ function PhoneContact() {
       <PhoneIcon />
       <div className="box-border content-stretch flex flex-col gap-1.5 items-start justify-start p-0 relative shrink-0">
         <div
-          className="font-['Montserrat:Medium',_sans-serif] font-medium leading-[0] min-w-full relative shrink-0 text-[#0f0449] text-[16px] text-left"
+          className="font-['Montserrat',_sans-serif] font-medium leading-[0] min-w-full relative shrink-0 text-[#0f0449] text-[16px] text-left"
           style={{ width: "min-content" }}
         >
           <p className="block leading-[normal]">Телефоны</p>

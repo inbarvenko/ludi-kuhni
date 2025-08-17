@@ -16,5 +16,14 @@ export type FurnitureObjType = {
   filters: FurnitureType[];
   color: string | null;
   images: ImageType[];
+
+  // Размеры
+  dimensions?: string;
+  // Описание материалов
+  details?: string;
+  // описание объекта
+  description?: string;
+
+  // 3д модель
   //   model_3d: null;
 };

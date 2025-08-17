@@ -2,16 +2,17 @@ import axiosInstance from "../../../shared/configs/axios";
 import type { FurnitureObjType } from "../../../shared/types/types";
 
 type Props = {
-  roomId: number;
+  room: number;
+  furniture_types?: string;
+  filters?: string;
+  color?: string;
 };
 
-export const getFurniture = async ({ roomId }: Props) => {
+export const getFurniture = async (params: Props) => {
   const { data } = await axiosInstance.get<FurnitureObjType[]>(
     "/furniture-items/",
     {
-      params: {
-        room: roomId,
-      },
+      params,
     }
   );
 

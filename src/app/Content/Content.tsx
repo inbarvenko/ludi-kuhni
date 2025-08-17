@@ -15,7 +15,7 @@ const Content: React.FC = () => {
   }, []);
 
   const onCatalogueClick = (id: number) => {
-    navigate("/catalog?id=" + id);
+    navigate("/catalog?room=" + id);
   };
 
   const onHomeClick = () => {
@@ -32,19 +32,19 @@ const Content: React.FC = () => {
       <div className="header-wrapper">
         <div className="header-1">
           <div className="header-1-item">
-            <CallIcon className="icon" />
+            <CallIcon className="icon" fontSize="small" />
             <div className="header-1-text">
               +7 (863) 431-47-07, +7 (863) 431-17-07
             </div>
           </div>
 
           <div className="header-1-item">
-            <WatchLaterIcon className="icon" />
+            <WatchLaterIcon className="icon" fontSize="small" />
             <div className="header-1-text">Пн-Сб 10:00 - 19:00</div>
           </div>
 
           <div className="header-1-item">
-            <LocationOnIcon className="icon" />
+            <LocationOnIcon className="icon" fontSize="small" />
             <div className="header-1-text">г. Таганрог, ул. Петровская 15</div>
           </div>
         </div>
@@ -61,23 +61,13 @@ const Content: React.FC = () => {
             <div className="header-2-items">
               {rooms?.map((item) => (
                 <div
+                  key={item.id}
                   className="header-2-text"
                   onClick={() => onCatalogueClick(item.id || 1)}
                 >
                   {item.name}
                 </div>
               ))}
-
-              {/* <div className="header-2-text" onClick={onCatalogueClick}>
-                Кухни
-              </div>
-              <div className="header-2-text">Шкафы</div>
-              <div className="header-2-text">Прихожие</div>
-              <div className="header-2-text">Ванные</div>
-              <div className="header-2-text">Гостинные</div>
-              <div className="header-2-text">Спальни</div>
-              <div className="header-2-text">Детские</div>
-              <div className="header-2-text">Офисная мебель</div> */}
             </div>
           ) : (
             <img

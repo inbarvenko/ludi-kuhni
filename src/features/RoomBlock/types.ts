@@ -11,12 +11,18 @@ export type FilterType = {
   name: string;
 };
 
+export type ColorType = {
+  hex_value: string;
+  id: number;
+  name: string;
+};
+
 export type RoomsHomeType = {
   id?: number;
   image: string;
   name: string;
 
-  colors: [];
+  colors: ColorType[];
   filter_groups: FilterType[];
   furniture_types: FurnitureType[];
 };

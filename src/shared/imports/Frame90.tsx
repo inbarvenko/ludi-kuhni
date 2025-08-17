@@ -5,10 +5,22 @@ import imgImage37 from "figma:asset/11bdee9c24e012c070e079bfa8dd36885ad2f419.png
 
 function LocationOn24DpE3E3E3Fill1Wght400Grad0Opsz241() {
   return (
-    <div className="relative shrink-0 size-6" data-name="location_on_24dp_E3E3E3_FILL1_wght400_GRAD0_opsz24 1">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
+    <div
+      className="relative shrink-0 size-6"
+      data-name="location_on_24dp_E3E3E3_FILL1_wght400_GRAD0_opsz24 1"
+    >
+      <svg
+        className="block size-full"
+        fill="none"
+        preserveAspectRatio="none"
+        viewBox="0 0 24 24"
+      >
         <g id="location_on_24dp_E3E3E3_FILL1_wght400_GRAD0_opsz24 1">
-          <path d={svgPaths.p39120b00} fill="var(--fill-0, #79BF3A)" id="Vector" />
+          <path
+            d={svgPaths.p39120b00}
+            fill="var(--fill-0, #79BF3A)"
+            id="Vector"
+          />
         </g>
       </svg>
     </div>
@@ -19,13 +31,15 @@ function Frame36() {
   return (
     <div className="box-border content-stretch flex flex-col gap-3 items-start justify-start leading-[0] p-0 relative shrink-0 text-[#0f0449] text-left">
       <div
-        className="font-['Montserrat:Medium',_sans-serif] font-medium min-w-full relative shrink-0 text-[16px]"
+        className="font-['Montserrat',_sans-serif] font-medium min-w-full relative shrink-0 text-[16px]"
         style={{ width: "min-content" }}
       >
         <p className="block leading-[normal]">Адрес</p>
       </div>
-      <div className="font-['Montserrat:Regular',_sans-serif] font-normal relative shrink-0 text-[14px] text-nowrap">
-        <p className="block leading-[normal] whitespace-pre">г. Таганрог, ул. Петровская 15</p>
+      <div className="font-['Montserrat',_sans-serif] font-normal relative shrink-0 text-[14px] text-nowrap">
+        <p className="block leading-[normal] whitespace-pre">
+          г. Таганрог, ул. Петровская 15
+        </p>
       </div>
     </div>
   );
@@ -42,10 +56,22 @@ function Frame37() {
 
 function Schedule24DpE3E3E3Fill1Wght400Grad0Opsz241() {
   return (
-    <div className="relative shrink-0 size-6" data-name="schedule_24dp_E3E3E3_FILL1_wght400_GRAD0_opsz24 1">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
+    <div
+      className="relative shrink-0 size-6"
+      data-name="schedule_24dp_E3E3E3_FILL1_wght400_GRAD0_opsz24 1"
+    >
+      <svg
+        className="block size-full"
+        fill="none"
+        preserveAspectRatio="none"
+        viewBox="0 0 24 24"
+      >
         <g id="schedule_24dp_E3E3E3_FILL1_wght400_GRAD0_opsz24 1">
-          <path d={svgPaths.p409d200} fill="var(--fill-0, #79BF3A)" id="Vector" />
+          <path
+            d={svgPaths.p409d200}
+            fill="var(--fill-0, #79BF3A)"
+            id="Vector"
+          />
         </g>
       </svg>
     </div>
@@ -56,13 +82,15 @@ function Frame45() {
   return (
     <div className="box-border content-stretch flex flex-col gap-3 items-start justify-start leading-[0] p-0 relative shrink-0 text-[#0f0449] text-left">
       <div
-        className="font-['Montserrat:Medium',_sans-serif] font-medium min-w-full relative shrink-0 text-[16px]"
+        className="font-['Montserrat',_sans-serif] font-medium min-w-full relative shrink-0 text-[16px]"
         style={{ width: "min-content" }}
       >
         <p className="block leading-[normal]">График работы</p>
       </div>
-      <div className="font-['Montserrat:Regular',_sans-serif] font-normal relative shrink-0 text-[14px] text-nowrap">
-        <p className="block leading-[normal] whitespace-pre">Пн-Сб 10.00 - 19.00</p>
+      <div className="font-['Montserrat',_sans-serif] font-normal relative shrink-0 text-[14px] text-nowrap">
+        <p className="block leading-[normal] whitespace-pre">
+          Пн-Сб 10.00 - 19.00
+        </p>
       </div>
     </div>
   );
@@ -79,10 +107,22 @@ function Frame39() {
 
 function Call24DpE3E3E3Fill1Wght400Grad0Opsz241() {
   return (
-    <div className="relative shrink-0 size-6" data-name="call_24dp_E3E3E3_FILL1_wght400_GRAD0_opsz24 1">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
+    <div
+      className="relative shrink-0 size-6"
+      data-name="call_24dp_E3E3E3_FILL1_wght400_GRAD0_opsz24 1"
+    >
+      <svg
+        className="block size-full"
+        fill="none"
+        preserveAspectRatio="none"
+        viewBox="0 0 24 24"
+      >
         <g id="call_24dp_E3E3E3_FILL1_wght400_GRAD0_opsz24 1">
-          <path d={svgPaths.p2b6fdc00} fill="var(--fill-0, #79BF3A)" id="Vector" />
+          <path
+            d={svgPaths.p2b6fdc00}
+            fill="var(--fill-0, #79BF3A)"
+            id="Vector"
+          />
         </g>
       </svg>
     </div>
@@ -91,7 +131,7 @@ function Call24DpE3E3E3Fill1Wght400Grad0Opsz241() {
 
 function Frame34() {
   return (
-    <div className="box-border content-stretch flex flex-row font-['Montserrat:Regular',_sans-serif] font-normal gap-3 items-start justify-start leading-[0] p-0 relative shrink-0 text-[#0f0449] text-[14px] text-left text-nowrap">
+    <div className="box-border content-stretch flex flex-row font-['Montserrat',_sans-serif] font-normal gap-3 items-start justify-start leading-[0] p-0 relative shrink-0 text-[#0f0449] text-[14px] text-left text-nowrap">
       <div className="relative shrink-0">
         <p className="[text-decoration-line:underline] [text-decoration-style:solid] [text-underline-position:from-font] block leading-[normal] text-nowrap whitespace-pre">
           +7 863 431-17-07
@@ -110,7 +150,7 @@ function Frame35() {
   return (
     <div className="box-border content-stretch flex flex-col gap-1.5 items-start justify-start p-0 relative shrink-0">
       <div
-        className="font-['Montserrat:Medium',_sans-serif] font-medium leading-[0] min-w-full relative shrink-0 text-[#0f0449] text-[16px] text-left"
+        className="font-['Montserrat',_sans-serif] font-medium leading-[0] min-w-full relative shrink-0 text-[#0f0449] text-[16px] text-left"
         style={{ width: "min-content" }}
       >
         <p className="block leading-[normal]">Телефоны</p>
@@ -132,9 +172,18 @@ function Frame38() {
 function Frame() {
   return (
     <div className="relative shrink-0 size-6" data-name="Frame">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
+      <svg
+        className="block size-full"
+        fill="none"
+        preserveAspectRatio="none"
+        viewBox="0 0 24 24"
+      >
         <g id="Frame">
-          <path d={svgPaths.p12606d00} fill="var(--fill-0, #79BF3A)" id="Vector" />
+          <path
+            d={svgPaths.p12606d00}
+            fill="var(--fill-0, #79BF3A)"
+            id="Vector"
+          />
         </g>
       </svg>
     </div>
@@ -145,13 +194,15 @@ function Frame46() {
   return (
     <div className="box-border content-stretch flex flex-col gap-3 items-start justify-start leading-[0] p-0 relative shrink-0 text-[#0f0449] text-left">
       <div
-        className="font-['Montserrat:Medium',_sans-serif] font-medium min-w-full relative shrink-0 text-[16px]"
+        className="font-['Montserrat',_sans-serif] font-medium min-w-full relative shrink-0 text-[16px]"
         style={{ width: "min-content" }}
       >
         <p className="block leading-[normal]">Почта</p>
       </div>
-      <div className="font-['Montserrat:Regular',_sans-serif] font-normal relative shrink-0 text-[14px] text-nowrap">
-        <p className="block leading-[normal] whitespace-pre">Пн-Сб 10.00 - 19.00</p>
+      <div className="font-['Montserrat',_sans-serif] font-normal relative shrink-0 text-[14px] text-nowrap">
+        <p className="block leading-[normal] whitespace-pre">
+          Пн-Сб 10.00 - 19.00
+        </p>
       </div>
     </div>
   );
@@ -168,10 +219,22 @@ function Frame40() {
 
 function TelegramPlaneBrandsSolid1() {
   return (
-    <div className="h-[27px] relative shrink-0 w-6" data-name="telegram-plane-brands-solid 1">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 27">
+    <div
+      className="h-[27px] relative shrink-0 w-6"
+      data-name="telegram-plane-brands-solid 1"
+    >
+      <svg
+        className="block size-full"
+        fill="none"
+        preserveAspectRatio="none"
+        viewBox="0 0 24 27"
+      >
         <g id="telegram-plane-brands-solid 1">
-          <path d={svgPaths.p3ea92600} fill="var(--fill-0, #79BF3A)" id="Vector" />
+          <path
+            d={svgPaths.p3ea92600}
+            fill="var(--fill-0, #79BF3A)"
+            id="Vector"
+          />
         </g>
       </svg>
     </div>
@@ -181,11 +244,13 @@ function TelegramPlaneBrandsSolid1() {
 function Frame47() {
   return (
     <div className="box-border content-stretch flex flex-col gap-3 items-start justify-start leading-[0] p-0 relative shrink-0 text-[#0f0449] text-left">
-      <div className="font-['Montserrat:Medium',_sans-serif] font-medium relative shrink-0 text-[16px] w-[194px]">
+      <div className="font-['Montserrat',_sans-serif] font-medium relative shrink-0 text-[16px] w-[194px]">
         <p className="block leading-[normal]">Наш канал в telegram</p>
       </div>
-      <div className="font-['Montserrat:Regular',_sans-serif] font-normal relative shrink-0 text-[14px] text-nowrap">
-        <p className="block leading-[normal] whitespace-pre">Пн-Сб 10.00 - 19.00</p>
+      <div className="font-['Montserrat',_sans-serif] font-normal relative shrink-0 text-[14px] text-nowrap">
+        <p className="block leading-[normal] whitespace-pre">
+          Пн-Сб 10.00 - 19.00
+        </p>
       </div>
     </div>
   );

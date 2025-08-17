@@ -9,6 +9,10 @@ export const HomePageWrapper = styled.div<{ width: number }>`
 
   background-color: ${colors["light"].white};
 
+  button:hover {
+    border-color: ${colors["light"].accent_green};
+  }
+
   .icon {
     color: ${colors["light"].brown};
     max-width: ${(props) => (props.width > 768 ? "20px" : "16px")};
@@ -42,9 +46,13 @@ export const HomePageWrapper = styled.div<{ width: number }>`
       display: flex;
       flex-direction: row;
       gap: 24px;
-      min-height: ${(props) => (props.width > 768 ? "48px" : "28px")};
+      min-height: ${(props) => (props.width > 768 ? "56px" : "28px")};
       width: ${(props) => (props.width > 768 ? "521px" : "247px")};
       z-index: 2;
+
+      span {
+        font-size: 18px;
+      }
 
       &-1 {
         width: 100%;
@@ -295,8 +303,11 @@ export const HomePageWrapper = styled.div<{ width: number }>`
           props.width > 768 ? (props.width > 1280 ? "56px" : "42px") : "24px"};
       }
 
-      &-span {
+      span {
         color: ${colors["light"].accent_green};
+        font-size: ${(props) =>
+          props.width > 768 ? (props.width > 1280 ? "56px" : "42px") : "24px"};
+        font-weight: 600;
       }
 
       &-sub {
@@ -376,6 +387,8 @@ export const HomePageWrapper = styled.div<{ width: number }>`
       display: flex;
       justify-content: center;
       align-items: center;
+
+      z-index: 10;
     }
 
     &-map_wrapper {

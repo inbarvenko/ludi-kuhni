@@ -1,25 +1,39 @@
-import { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
 import { Grid3X3, List, Heart, Eye, X, SlidersHorizontal } from "lucide-react";
 import { FaArrowRight } from "react-icons/fa6";
 
-import svgPaths from "./Catalogue.svg";
-
-import { Button, Card, Checkbox, Divider, Spin } from "antd";
+import { Button, Card, Checkbox, Divider } from "antd";
 import CardContent from "@mui/material/CardContent";
 import { CatalogueWrapper } from "./CatalogueWrapper";
 import { useQuery } from "@tanstack/react-query";
 import { getRooms } from "../../widgets/RoomsBlock/api/getRooms";
 import { getFurniture } from "./api/getFurniture";
-import type { FilterValueType } from "../../features/RoomBlock/types";
+import type {
+  ColorType,
+  FilterValueType,
+} from "../../features/RoomBlock/types";
 import { colors } from "../../shared/constants/colors";
+import type { FurnitureType } from "../../shared/types/types";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import CatalogHeader from "./CatalogHeader/CatalogHeader";
+import ColorCircle from "../../shared/ui/ColorCircle/ColorCircle";
 
-const initialValue = { id: 2, name: "Кухни" };
+const CatalogPage: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
-export function CatalogPage() {
-  const [selectedCategory, setSelectedCategory] =
-    useState<FilterValueType>(initialValue);
+  // имя и номер выбранной комнаты
+  const [selectedCategory, setSelectedCategory] = useState<FilterValueType>(
+    {} as FilterValueType
+  );
+  // выбранные цвета
+  const [selectedColors, setSelectedColors] = useState<ColorType[]>([]);
+  // выбранные типы мебели
+  const [selectedTypes, setSelectedTypes] = useState<FurnitureType[]>([]);
+  // выбранные ост фильтры
   const [selectedStyles, setSelectedStyles] = useState<FilterValueType[]>([]);
+
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [favorites, setFavorites] = useState<number[]>([]);
   const [showFilters, setShowFilters] = useState(true);
@@ -31,19 +45,84 @@ export function CatalogPage() {
 
   const selectedRoom = useMemo(() => {
     return rooms?.find((room) => room.id === selectedCategory.id);
-  }, [rooms, selectedCategory]);
+  }, [rooms, selectedCategory.id]);
 
-  const { data: furniture, isLoading } = useQuery({
-    queryKey: [`furniture?=${selectedCategory.id}`], // Уникальный ключ для кэша
-    queryFn: () => getFurniture({ roomId: selectedCategory.id }),
+  // Установка нужной комнаты в state из searchParams
+  useEffect(() => {
+    const r = searchParams.get("room")!;
+    if (
+      !selectedCategory.id ||
+      !selectedCategory.name ||
+      +r !== selectedCategory.id
+    ) {
+      setSelectedCategory({
+        id: +r,
+        name: rooms?.find((room) => room.id === +r)?.name || "",
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rooms, searchParams]);
+
+  const furniture_types_ids = useMemo(
+    () => selectedTypes?.map((type) => type.id).join(","),
+    [selectedTypes]
+  );
+
+  const filters_ids = useMemo(
+    () => selectedStyles?.map((type) => type.id).join(","),
+    [selectedStyles]
+  );
+
+  const color_ids = useMemo(
+    () => selectedColors?.map((type) => type.id).join(","),
+    [selectedColors]
+  );
+
+  const { data: furniture } = useQuery({
+    queryKey: [
+      `furniture?room=${selectedCategory.id}&styles=${filters_ids}&types=${furniture_types_ids}&colors=${color_ids}`,
+    ], // Уникальный ключ для кэша
+    queryFn: () =>
+      getFurniture({
+        room: selectedCategory.id,
+        filters: filters_ids,
+        furniture_types: furniture_types_ids,
+        color: color_ids,
+      }),
   });
+
+  const navigateProduct = (id: number) => {
+    navigate("/product/" + id);
+  };
+
+  const clearStates = () => {
+    setSelectedStyles([]);
+    setSelectedTypes([]);
+    setSelectedColors([]);
+  };
 
   const handleCategoryToggle = (category: FilterValueType) => {
     setSelectedCategory(category);
+    setSearchParams((prev) => {
+      return { ...prev, room: category.id };
+    });
+    clearStates();
+  };
+
+  const handleColorToggle = (style: ColorType) => {
+    setSelectedColors((prev) =>
+      prev.includes(style) ? prev.filter((s) => s !== style) : [...prev, style]
+    );
   };
 
   const handleStyleToggle = (style: FilterValueType) => {
     setSelectedStyles((prev) =>
+      prev.includes(style) ? prev.filter((s) => s !== style) : [...prev, style]
+    );
+  };
+
+  const handleTypeToggle = (style: FilterValueType) => {
+    setSelectedTypes((prev) =>
       prev.includes(style) ? prev.filter((s) => s !== style) : [...prev, style]
     );
   };
@@ -54,76 +133,22 @@ export function CatalogPage() {
     );
   };
 
-  const removeFilter = (type: "category" | "style", value: number) => {
-    if (type === "category") {
-      setSelectedCategory(initialValue);
+  const removeFilter = (type: "color" | "type" | "style", value: number) => {
+    if (type === "color") {
+      setSelectedColors((prev) => prev.filter((s) => s.id !== value));
     } else {
-      setSelectedStyles((prev) => prev.filter((s) => s.id !== value));
+      if (type === "type") {
+        setSelectedTypes((prev) => prev.filter((s) => s.id !== value));
+      } else {
+        setSelectedStyles((prev) => prev.filter((s) => s.id !== value));
+      }
     }
   };
 
   return (
     <CatalogueWrapper className="min-h-screen bg-gray-50">
       {/* Catalog Header */}
-      <div
-        className={` bg-[#F6F0E9] overflow-clip relative shrink-0 w-full flex justify-center items-center py-[40px]`}
-      >
-        <div
-          className="absolute h-[346px] left-[1026px] top-[72px] w-[542px]"
-          data-name="Vector"
-        >
-          <div className="absolute inset-[-28.9%_-18.45%]">
-            <svg
-              className="block size-full"
-              fill="none"
-              preserveAspectRatio="none"
-              viewBox="0 0 742 546"
-            >
-              <g filter="url(#filter0_f_4_202)" id="Vector">
-                <path
-                  clipRule="evenodd"
-                  d={svgPaths.p243a2400}
-                  fill="#79BF3A"
-                  fillRule="evenodd"
-                />
-              </g>
-              <defs>
-                <filter
-                  colorInterpolationFilters="sRGB"
-                  filterUnits="userSpaceOnUse"
-                  height="546"
-                  id="filter0_f_4_202"
-                  width="742"
-                  x="-1.18722e-07"
-                  y="-5.8524e-08"
-                >
-                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                  <feBlend
-                    in="SourceGraphic"
-                    in2="BackgroundImageFix"
-                    mode="normal"
-                    result="shape"
-                  />
-                  <feGaussianBlur
-                    result="effect1_foregroundBlur_4_202"
-                    stdDeviation="50"
-                  />
-                </filter>
-              </defs>
-            </svg>
-          </div>
-        </div>
-        <div className="absolute bg-[#0f0449] blur-[50px] filter h-[117px] left-28 opacity-50 rounded-[100px] top-[-42px] w-[213px]" />
-
-        <div className="text-[#0f0449] p">
-          <p
-            className="block leading-[normal] whitespace-pre mak"
-            style={{ fontSize: "36px", textAlign: "center" }}
-          >
-            Каталог
-          </p>
-        </div>
-      </div>
+      <CatalogHeader />
 
       <div
         className={`w-full flex flex-row items-center ${
@@ -131,7 +156,9 @@ export function CatalogPage() {
         } px-[78px] mt-6 `}
       >
         {/* Active Filters */}
-        {(selectedCategory || selectedStyles.length > 0) && (
+        {(selectedCategory ||
+          selectedStyles.length > 0 ||
+          selectedTypes.length > 0) && (
           <div className="flex flex-wrap gap-2">
             {selectedCategory && (
               <div
@@ -139,7 +166,7 @@ export function CatalogPage() {
                 className="badge"
                 // onClick={() => removeFilter("category", selectedCategory)}
               >
-                Категория: {selectedCategory.name}
+                Выбранная категория: {selectedCategory.name}
                 <X size={14} />
               </div>
             )}
@@ -150,7 +177,29 @@ export function CatalogPage() {
                 className="badge"
                 onClick={() => removeFilter("style", style.id)}
               >
-                Стиль: {style.name}
+                Фильтры: {style.name}
+                <X size={14} />
+              </div>
+            ))}
+
+            {selectedTypes.map((style) => (
+              <div
+                key={style.id}
+                className="badge"
+                onClick={() => removeFilter("type", style.id)}
+              >
+                Выбранный тип: {style.name}
+                <X size={14} />
+              </div>
+            ))}
+
+            {selectedColors.map((style) => (
+              <div
+                key={style.id}
+                className="badge"
+                onClick={() => removeFilter("color", style.id)}
+              >
+                Выбранный цвет: {style.name}
                 <X size={14} />
               </div>
             ))}
@@ -197,14 +246,14 @@ export function CatalogPage() {
             <motion.aside
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="w-64 flex-shrink-0"
+              className="w-64 flex-shrink-0 "
             >
               <Card>
                 <CardContent className="p-6">
                   <div className="space-y-6">
                     {/* Categories */}
                     <div>
-                      <h3 className="filter-main">Комната</h3>
+                      <h3 className="filter-main">Категории</h3>
 
                       <div className="space-y-3">
                         {rooms?.map((room, index) => (
@@ -220,7 +269,6 @@ export function CatalogPage() {
                             className="flex items-center gap-[5px]"
                           >
                             <label
-                              // htmlFor={room.}
                               className={`text-sm cursor-pointer text-gray-700 category  ${
                                 selectedCategory.id === room.id &&
                                 "category-active"
@@ -235,6 +283,52 @@ export function CatalogPage() {
 
                     <Divider />
 
+                    <div>
+                      <h3 className="filter-main">Тип мебели</h3>
+                      {selectedRoom?.furniture_types.map((type, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center gap-[5px]"
+                        >
+                          <Checkbox
+                            checked={selectedTypes.includes(type)}
+                            onChange={() => handleTypeToggle(type)}
+                          />
+
+                          <label
+                            htmlFor={type.name}
+                            className={`text-sm cursor-pointer text-gray-700 category `}
+                          >
+                            {type.name}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+
+                    <Divider />
+
+                    <div>
+                      <h3 className="filter-main">Цвета</h3>
+                      {selectedRoom?.colors.map((color, index) => (
+                        <div
+                          key={index + color.hex_value}
+                          className="flex items-center gap-[5px]"
+                        >
+                          <Checkbox
+                            checked={selectedColors.includes(color)}
+                            onChange={() => handleColorToggle(color)}
+                          />
+
+                          <ColorCircle
+                            hexColor={color.hex_value}
+                            colorName={color.name}
+                          />
+                        </div>
+                      ))}
+                    </div>
+
+                    <Divider />
+
                     {/* Styles */}
                     {selectedRoom?.filter_groups.map((group, index) => (
                       <div key={index}>
@@ -244,7 +338,7 @@ export function CatalogPage() {
                           <div
                             key={index}
                             // onClick={() => handleStyleToggle(filter.name)}
-                            className="flex items-center gap-[5px]"
+                            className="flex items-center gap-[5px]  pt-[10px] pb-[10px]"
                           >
                             <Checkbox
                               checked={selectedStyles.includes(filter)}
@@ -253,7 +347,7 @@ export function CatalogPage() {
 
                             <label
                               htmlFor={filter.name}
-                              className={`text-sm cursor-pointer text-gray-700 category `}
+                              className={`text-sm cursor-pointer text-gray-700 category pl-[10px]`}
                             >
                               {filter.name}
                             </label>
@@ -283,99 +377,98 @@ export function CatalogPage() {
                   : "space-y-4"
               }
             >
-              {isLoading ? (
-                <Spin />
-              ) : (
-                furniture?.map((product) => (
-                  <motion.div
-                    key={product.id}
-                    layout
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    whileHover={{ y: -5 }}
-                    className="group"
+              {/* {isLoading ? (
+                <img src={Loading} />
+              ) : ( */}
+              {furniture?.map((product) => (
+                <motion.div
+                  key={product.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -5 }}
+                  className="group"
+                >
+                  <Card
+                    className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 max-h-[460px] min-h-[460px] hover:cursor-pointer"
+                    cover={
+                      <img
+                        src={product.images[0].image}
+                        alt=""
+                        style={{
+                          maxHeight: "330px",
+                          minHeight: "330px",
+                          objectFit: "cover",
+                        }}
+                      />
+                    }
+                    onClick={() => navigateProduct(product.id)}
                   >
-                    <Card
-                      className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300"
-                      cover={<img src={product.images[0].image} alt="" />}
-                    >
-                      <div className="relative">
-                        {/* <div
-                          className="aspect-square bg-cover bg-center"
-                          style={{
-                            backgroundImage: `url('${product.images[0].image}')`,
-                          }}
-                        /> */}
+                    <div className="relative">
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
 
-                        {/* Overlay */}
-                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
+                      {/* Action Buttons */}
+                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity space-y-2">
+                        <Button
+                          size="small"
+                          variant="solid"
+                          className="h-8 w-8 p-0 rounded-full"
+                          onClick={() => toggleFavorite(product.id)}
+                        >
+                          <Heart
+                            className={`h-4 w-4 ${
+                              favorites.includes(product.id)
+                                ? "fill-red-500 text-red-500"
+                                : ""
+                            }`}
+                          />
+                        </Button>
 
-                        {/* Action Buttons */}
-                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity space-y-2">
-                          <Button
-                            size="small"
-                            variant="solid"
-                            className="h-8 w-8 p-0 rounded-full"
-                            onClick={() => toggleFavorite(product.id)}
-                          >
-                            <Heart
-                              className={`h-4 w-4 ${
-                                favorites.includes(product.id)
-                                  ? "fill-red-500 text-red-500"
-                                  : ""
-                              }`}
-                            />
-                          </Button>
-
-                          <Button
-                            size="small"
-                            variant="solid"
-                            className="h-8 w-8 p-0 rounded-full"
-                          >
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                        </div>
-
-                        {/* Color Dots */}
-                        <div className="absolute bottom-4 left-4 flex space-x-1">
-                          {product.color && (
-                            <div
-                              className="w-3 h-3 rounded-full border border-white shadow-sm"
-                              style={{ backgroundColor: product.color }}
-                            />
-                          )}
-                        </div>
+                        <Button
+                          size="small"
+                          variant="solid"
+                          className="h-8 w-8 p-0 rounded-full"
+                        >
+                          <Eye className="h-4 w-4" />
+                        </Button>
                       </div>
 
-                      <CardContent className="p-4">
-                        <div className="flex items-start justify-between mb-2">
-                          <h3 className="text-lg text-[#0f0449] group-hover:text-[#79bf3a] transition-colors">
-                            {product.model}
-                          </h3>
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                          <div>
-                            {product.filters.map((filter, index) => (
-                              <p
-                                key={filter.name + index}
-                                className="text-sm text-gray-500"
-                              >
-                                {filter.name}
-                              </p>
-                            ))}
-                          </div>
-
-                          <FaArrowRight
-                            size={24}
-                            color={colors["light"].accent_green}
+                      {/* Color Dots */}
+                      <div className="absolute bottom-4 left-4 flex space-x-1">
+                        {product.color && (
+                          <div
+                            className="w-3 h-3 rounded-full border border-white shadow-sm"
+                            style={{ backgroundColor: product.color }}
                           />
+                        )}
+                      </div>
+                    </div>
+
+                    <CardContent className="p-4">
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="card-text-main text-[#0f0449] group-hover:text-[#79bf3a] transition-colors">
+                          {product.model}
+                        </h3>
+                      </div>
+
+                      <div className="flex items-center justify-between gap-[15px]">
+                        <div className="card-text text-[#6c6c6c] font-['Montserrat']">
+                          {product.filters
+                            .map((filter) => filter.name)
+                            .join(", ")}
                         </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))
-              )}
+
+                        <FaArrowRight
+                          size={24}
+                          color={colors["light"].accent_green}
+                        />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+              {/* )} */}
             </motion.div>
 
             {furniture?.length === 0 && (
@@ -391,6 +484,6 @@ export function CatalogPage() {
       </div>
     </CatalogueWrapper>
   );
-}
+};
 
 export default CatalogPage;

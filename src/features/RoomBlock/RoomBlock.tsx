@@ -1,14 +1,24 @@
 import React from "react";
 import type { RoomsHomeType } from "./types";
 import { RoomBlockWrapper } from "./RoomBlockWrapper";
+import { useNavigate } from "react-router-dom";
 
 type Props = RoomsHomeType & {
   width?: number;
 };
 
-const RoomBlock: React.FC<Props> = ({ image, name, width }: Props) => {
+const RoomBlock: React.FC<Props> = ({ image, name, width, id }: Props) => {
+  const navigate = useNavigate();
+
+  const onCatalogueClick = (id: number) => {
+    navigate("/catalog?room=" + id);
+  };
+
   return (
-    <RoomBlockWrapper width={width || 1440}>
+    <RoomBlockWrapper
+      width={width || 1440}
+      onClick={() => onCatalogueClick(id || 2)}
+    >
       <div className="block">
         <img src={image} alt={name} />
 

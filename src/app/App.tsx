@@ -3,9 +3,11 @@ import HomePage from "../pages/HomePage/HomePage.tsx";
 import "./App.css";
 import "../shared/constants/fonts/fonts.ts";
 import { GlobalLoading } from "../pages/GlobalLoading/GlobalLoading.tsx";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Content from "./Content/Content.tsx";
 import CatalogPage from "../pages/Catalogue/Catalogue.tsx";
+import Page404 from "../pages/Page404/Page404.tsx";
+import FurniturePage from "../pages/FurniturePage/FurniturePage.tsx";
 
 // const router = createBrowserRouter([
 //   {
@@ -27,9 +29,13 @@ const routes = [
     path: "/catalog",
     element: <CatalogPage />,
   },
+  {
+    path: `/product/:id`,
+    element: <FurniturePage />,
+  },
 ];
 
-const App = () => {
+const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -53,7 +59,8 @@ const App = () => {
                   element={item.element}
                 />
               ))}
-              {/* <Route path="*" element={<Page404 />} /> */}
+
+              <Route path="*" element={<Page404 />} />
             </>
           </Route>
         </Routes>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../shared/constants/colors";
 
-const QuestionWrapper = styled.div<{ width: number; active: boolean }>`
+const QuestionWrapper = styled.div<{ width: number; active: number }>`
   width: 100%;
 
   display: flex;

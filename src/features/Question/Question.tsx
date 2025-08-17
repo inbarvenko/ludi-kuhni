@@ -14,7 +14,7 @@ const Question: React.FC<Props> = ({ width, question }: Props) => {
   const toggleActive = () => setActive((props) => !props);
 
   return (
-    <QuestionWrapper active={active} width={width}>
+    <QuestionWrapper active={active ? 1 : 0} width={width}>
       <div className="wrapper" onClick={toggleActive}>
         <div className="question">{question.question}</div>
 
