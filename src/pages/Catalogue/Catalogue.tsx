@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
-import { Grid3X3, List, Heart, Eye, X, SlidersHorizontal } from "lucide-react";
+import { Grid3X3, List, X, SlidersHorizontal } from "lucide-react";
 import { FaArrowRight } from "react-icons/fa6";
 
 import { Button, Card, Checkbox, Divider } from "antd";
@@ -35,7 +35,7 @@ const CatalogPage: React.FC = () => {
   const [selectedStyles, setSelectedStyles] = useState<FilterValueType[]>([]);
 
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [favorites, setFavorites] = useState<number[]>([]);
+  // const [favorites, setFavorites] = useState<number[]>([]);
   const [showFilters, setShowFilters] = useState(true);
 
   const { data: rooms } = useQuery({
@@ -127,11 +127,11 @@ const CatalogPage: React.FC = () => {
     );
   };
 
-  const toggleFavorite = (id: number) => {
-    setFavorites((prev) =>
-      prev.includes(id) ? prev.filter((fav) => fav !== id) : [...prev, id]
-    );
-  };
+  // const toggleFavorite = (id: number) => {
+  //   setFavorites((prev) =>
+  //     prev.includes(id) ? prev.filter((fav) => fav !== id) : [...prev, id]
+  //   );
+  // };
 
   const removeFilter = (type: "color" | "type" | "style", value: number) => {
     if (type === "color") {
@@ -393,8 +393,8 @@ const CatalogPage: React.FC = () => {
                     className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 max-h-[460px] min-h-[460px] hover:cursor-pointer"
                     cover={
                       <img
-                        src={product.images[0].image}
-                        alt=""
+                        src={product.preview_image}
+                        alt="Превью"
                         style={{
                           maxHeight: "330px",
                           minHeight: "330px",
@@ -409,7 +409,7 @@ const CatalogPage: React.FC = () => {
                       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
 
                       {/* Action Buttons */}
-                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity space-y-2">
+                      {/* <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity space-y-2">
                         <Button
                           size="small"
                           variant="solid"
@@ -432,17 +432,19 @@ const CatalogPage: React.FC = () => {
                         >
                           <Eye className="h-4 w-4" />
                         </Button>
-                      </div>
+                      </div> */}
 
                       {/* Color Dots */}
-                      <div className="absolute bottom-4 left-4 flex space-x-1">
-                        {product.color && (
-                          <div
-                            className="w-3 h-3 rounded-full border border-white shadow-sm"
-                            style={{ backgroundColor: product.color }}
-                          />
-                        )}
-                      </div>
+                      {/* <div className="absolute bottom-4 left-4 flex space-x-1">
+                        {product.colors?.length &&
+                          product.colors.map((color, index) => (
+                            <ColorCircle
+                              key={color.hex_value + index}
+                              hexColor={color?.hex_value}
+                              colorName={color.name}
+                            />
+                          ))}
+                      </div> */}
                     </div>
 
                     <CardContent className="p-4">

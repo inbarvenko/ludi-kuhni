@@ -23,7 +23,7 @@ export const ContentWrapper = styled.div<{ width: number }>`
   .header {
     &-1 {
       max-width: 100%;
-      min-height: 54px;
+      min-height: ${(props) => (props.width > 768 ? "54px" : "35px")};
 
       display: flex;
       flex-direction: row;

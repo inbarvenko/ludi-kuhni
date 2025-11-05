@@ -286,26 +286,44 @@ const HomePage: React.FC = () => {
           </div>
         </div>
 
-        <div
-          id="map"
-          style={{ width: "100%", height: "100%", position: "relative" }}
-        >
-          <div style={{ position: "relative", overflow: "hidden" }}>
-            <iframe
-              src="https://yandex.ru/map-widget/v1/?ll=38.936850%2C47.207398&mode=usermaps&source=constructorLink&um=constructor%3Ad1a5893aac5359b75107c15a65c9184e3bebff8fcf41061271f3a2674e1830c4&z=16"
-              width="100%"
-              height="400"
-              // frameBorder="1"
-              allowFullScreen={true}
-              style={{ position: "relative", height: "70vh" }}
-            ></iframe>
+        <div className="map-block">
+          {width < 768 && (
+            <div className="map-block-mobile">
+              <div
+                className="font-['Mak:Bold',_sans-serif] leading-[0] min-w-full not-italic relative shrink-0 text-[#0f0449] text-[30px] text-left"
+                style={{ width: "min-content" }}
+              >
+                <p className="flex align-center justify-center leading-[normal] text-accent">
+                  Свяжитесь с нами!
+                </p>
+              </div>
+            </div>
+          )}
+
+          <div
+            id="map"
+            style={{ width: "100vw", height: "100%", position: "relative" }}
+          >
+            <div style={{ position: "relative", overflow: "hidden" }}>
+              <iframe
+                src="https://yandex.ru/map-widget/v1/?ll=38.936850%2C47.207398&mode=usermaps&source=constructorLink&um=constructor%3Ad1a5893aac5359b75107c15a65c9184e3bebff8fcf41061271f3a2674e1830c4&z=16"
+                width="100vw"
+                height="400"
+                allowFullScreen={true}
+                style={{ position: "relative", height: "80vh", width: "100vw" }}
+              ></iframe>
+            </div>
+
+            {width > 768 && (
+              <div className="flex items-center justify-center p-4 absolute z-10 top-0 left-1/30 ">
+                <div className="relative ">
+                  <ContactBlock />
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="bg-gray-50 flex items-center justify-center p-4 absolute z-10 top-1/30 left-1/30 ">
-            <div className="relative ">
-              <ContactBlock />
-            </div>
-          </div>
+          <div className="footer"></div>
         </div>
       </div>
     </HomePageWrapper>

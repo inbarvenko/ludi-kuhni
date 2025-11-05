@@ -33,11 +33,13 @@ const QuestionWrapper = styled.div<{ width: number; active: number }>`
 
     overflow: hidden;
     transition: all 0.3s ease-in-out;
+    padding-bottom: 10px;
   }
 
   .answer.max-h-0 {
     max-height: 0;
     opacity: 0;
+    padding-bottom: 0;
   }
 
   .answer.max-h-96 {
@@ -53,6 +55,7 @@ const QuestionWrapper = styled.div<{ width: number; active: number }>`
     border-radius: 100px;
     background-color: ${colors["light"].accent_green};
     color: ${colors["light"].white};
+    height: 26px;
   }
 
   .close-button.active {

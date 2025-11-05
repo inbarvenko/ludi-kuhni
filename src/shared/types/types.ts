@@ -6,6 +6,14 @@ export type FurnitureType = {
 export type ImageType = {
   id: number;
   image: string;
+  large: string;
+  medium: string;
+  thumbnail: string;
+};
+
+export type ColorCircleType = {
+  hex_value: string;
+  name: string;
 };
 
 export type FurnitureObjType = {
@@ -14,8 +22,9 @@ export type FurnitureObjType = {
   warranty: string;
   furniture_type: FurnitureType;
   filters: FurnitureType[];
-  color: string | null;
+  colors: ColorCircleType[] | null;
   images: ImageType[];
+  preview_image: string;
 
   // Размеры
   dimensions?: string;
@@ -24,6 +33,16 @@ export type FurnitureObjType = {
   // описание объекта
   description?: string;
 
+  recommendations: RecommendationType[];
+
   // 3д модель
   //   model_3d: null;
+};
+
+export type RecommendationType = {
+  category: string;
+  id: number;
+  image: string;
+  name: string;
+  style: string;
 };

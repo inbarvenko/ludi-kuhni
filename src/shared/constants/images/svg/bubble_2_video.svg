@@ -1,7 +1,7 @@
-<svg width="553" height="725" viewBox="0 0 553 725" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="0" height="0" viewBox="0 0 553 725" fill="none" xmlns="http://www.w3.org/2000/svg">
 <defs>
-    <clipPath id="blob-mask">
-        <path d="M553 725H138.548C119.596 725 100.112 722.254 84.4177 711.632C-81.4099 599.398 119.084 152.414 1.14828 13.7515C-21.2568 -12.591 288.52 7.84714 553 3.36542C553 234.03 553 725 553 725Z" fill="#666666"/>
+    <clipPath id="blob-mask" clipPathUnits="objectBoundingBox">
+        <path transform="scale(0.001808 0.001379)" d="M553 725H138.548C119.596 725 100.112 722.254 84.4177 711.632C-81.4099 599.398 119.084 152.414 1.14828 13.7515C-21.2568 -12.591 288.52 7.84714 553 3.36542C553 234.03 553 725 553 725Z" fill="#666666"/>
     </clipPath>
 </defs>
 </svg>

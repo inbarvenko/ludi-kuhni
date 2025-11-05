@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../shared/constants/colors";
-import ill from "../../shared/constants/images/svg/main_ill.svg";
+import ill from "../../shared/constants/images/svg/main_1.png";
 
 export const HomePageWrapper = styled.div<{ width: number }>`
   height: 100%;
@@ -30,9 +30,12 @@ export const HomePageWrapper = styled.div<{ width: number }>`
 
   .block-1 {
     height: 100%;
-    min-height: 80vh;
+    min-height: ${(props) => (props.width > 768 ? "80vh" : "60vh")};
     overflow: hidden;
-    background-size: 100% auto; /* Растягивает по ширине, сохраняет пропорции по высоте */
+    background-size: ${(props) =>
+      props.width > 768
+        ? "100% auto"
+        : "220% auto"}; /* Растягивает по ширине, сохраняет пропорции по высоте */
     background-position: center;
     background-repeat: no-repeat;
     z-index: 1;
@@ -135,6 +138,8 @@ export const HomePageWrapper = styled.div<{ width: number }>`
     font-weight: 500;
     font-family: "Montserrat", sans-serif;
     color: ${colors["light"].brown};
+
+    padding-bottom: 20px;
   }
 
   .block-2 {
@@ -153,7 +158,7 @@ export const HomePageWrapper = styled.div<{ width: number }>`
       left: 0;
       top: 0;
       height: 100%;
-      width: ${(props) => (props.width > 768 ? "40%" : "90%")};
+      width: ${(props) => (props.width > 768 ? "40%" : "100%")};
 
       display: flex;
       align-items: flex-start;
@@ -208,7 +213,6 @@ export const HomePageWrapper = styled.div<{ width: number }>`
       top: 0;
       height: 100%;
       width: 40%;
-
       z-index: 1;
 
       &-clip {
@@ -217,9 +221,21 @@ export const HomePageWrapper = styled.div<{ width: number }>`
         height: 100%;
         right: 0;
         top: 0;
-
         object-fit: cover;
-        clip-path: url("/bubble_2_video.svg#blob-mask");
+
+        // Inline SVG mask с правильным позиционированием
+        mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 553 725"><path d="M553 725H138.548C119.596 725 100.112 722.254 84.4177 711.632C-81.4099 599.398 119.084 152.414 1.14828 13.7515C-21.2568 -12.591 288.52 7.84714 553 3.36542C553 234.03 553 725 553 725Z" fill="black"/></svg>');
+
+        // Ключевые настройки:
+        mask-repeat: no-repeat;
+        mask-position: right center; // Выравнивание по правому краю
+        mask-size: contain; // или 100% 100% для растяжения
+
+        // Для WebKit браузеров
+        -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 553 725"><path d="M553 725H138.548C119.596 725 100.112 722.254 84.4177 711.632C-81.4099 599.398 119.084 152.414 1.14828 13.7515C-21.2568 -12.591 288.52 7.84714 553 3.36542C553 234.03 553 725 553 725Z" fill="black"/></svg>');
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: right center;
+        -webkit-mask-size: contain;
       }
     }
   }
@@ -396,7 +412,7 @@ export const HomePageWrapper = styled.div<{ width: number }>`
     }
 
     &-map {
-      width: 560px;
+      width: ${(props) => props.width > 768 && "560px"};
       height: 800px;
       overflow: hidden;
       position: relative;
@@ -418,7 +434,8 @@ export const HomePageWrapper = styled.div<{ width: number }>`
       }
 
       &-iframe {
-        width: 100%;
+        width: ${(props) => (props.width > 768 ? "100%" : " 90vw")};
+
         height: 100%;
         border: 1px solid #e6e6e6;
         border-radius: 8px;
@@ -486,5 +503,25 @@ export const HomePageWrapper = styled.div<{ width: number }>`
         z-index: -1;
       }
     }
+
+    .map-block {
+      display: flex;
+      flex-direction: column;
+
+      &-mobile {
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+    }
+  }
+
+  .footer {
+    height: 150px;
+    background-color: ${colors["light"].main_blue};
+    margin-top: 20px;
   }
 `;

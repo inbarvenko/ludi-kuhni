@@ -2,6 +2,9 @@ import svgPaths from "../../shared/imports/svg-7785u1ndul";
 // import imgImage35 from "figma:asset/30a02c4fa73a26fc0d4acc5724f74dec064cfad9.png";
 // import imgImage36 from "figma:asset/88706366ffb03348798fd1658d6fbf6e7b46116c.png";
 // import imgImage37 from "figma:asset/11bdee9c24e012c070e079bfa8dd36885ad2f419.png";
+import telegram from "../../shared/constants/images/svg/tel.svg";
+import whatsapp from "../../shared/constants/images/svg/wh.svg";
+import vk from "../../shared/constants/images/svg/vk.svg";
 
 function LocationIcon() {
   return (
@@ -169,22 +172,22 @@ function SocialIcons() {
   return (
     <div className="box-border content-stretch flex flex-row gap-6 items-center justify-center p-0 relative shrink-0 w-full">
       <a
-        href="#"
+        href="https://t.me/ludikuhnitgn"
         className="bg-center bg-cover bg-no-repeat shrink-0 size-9 hover:scale-110 transition-transform cursor-pointer"
-        // style={{ backgroundImage: `url('${imgImage35}')` }}
-        title="VKontakte"
+        style={{ backgroundImage: `url('${telegram}')` }}
+        title="Telegram"
       />
       <a
-        href="#"
+        href="https://api.whatsapp.com/send/?phone=79281653852&text&type=phone_number&app_absent=0"
         className="bg-center bg-no-repeat bg-size-[116.22%_116.22%] shrink-0 size-[37px] hover:scale-110 transition-transform cursor-pointer"
-        // style={{ backgroundImage: `url('${imgImage36}')` }}
+        style={{ backgroundImage: `url('${whatsapp}')` }}
         title="WhatsApp"
       />
       <a
-        href="#"
+        href="https://vk.com/ludikuhni?from=groups"
         className="bg-center bg-cover bg-no-repeat shrink-0 size-9 hover:scale-110 transition-transform cursor-pointer"
-        // style={{ backgroundImage: `url('${imgImage37}')` }}
-        title="Telegram"
+        style={{ backgroundImage: `url('${vk}')` }}
+        title="VKontakte"
       />
     </div>
   );
@@ -204,6 +207,7 @@ export default function ContactBlock() {
               Свяжитесь с нами!
             </p>
           </div>
+
           <div className="box-border content-stretch flex flex-col gap-6 items-start justify-start p-0 relative shrink-0 w-[281px]">
             <ContactItem
               icon={<LocationIcon />}
@@ -224,7 +228,7 @@ export default function ContactBlock() {
               title="Почта"
               content={
                 <a
-                  href="mailto:info@company.ru"
+                  href="mailto:barvenko@list.ru"
                   className="[text-decoration-line:underline] [text-decoration-style:solid] [text-underline-position:from-font] block leading-[normal] whitespace-pre hover:text-[#79BF3A] transition-colors"
                 >
                   barvenko@list.ru
@@ -238,7 +242,7 @@ export default function ContactBlock() {
               title="Наш канал в telegram"
               content={
                 <a
-                  href="https://t.me/yourchannel"
+                  href="https://t.me/ludikuhni"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="[text-decoration-line:underline] [text-decoration-style:solid] [text-underline-position:from-font] block leading-[normal] whitespace-pre hover:text-[#79BF3A] transition-colors"

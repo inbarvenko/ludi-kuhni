@@ -1,11 +1,13 @@
 import { Shield, Palette, Package, Ruler } from "lucide-react";
+import type { ColorCircleType } from "../../../shared/types/types";
+import ColorCircle from "../../../shared/ui/ColorCircle/ColorCircle";
 
 interface ProductInfoProps {
   name: string;
   description: string;
   characteristics: {
     material: string;
-    color: string;
+    colors: ColorCircleType[] | null;
     warranty: string;
     dimensions: string;
     manufacturer: string;
@@ -22,11 +24,13 @@ export function ProductInfo({
   characteristics,
   modalOpen,
 }: ProductInfoProps) {
+  console.log("characteristics.colors", characteristics.colors);
   return (
     <div className="flex flex-col gap-8">
       {/* Breadcrumb */}
       <div className="font-['Montserrat'] text-[#6c6c6c] text-sm">
-        Главная / Кухни / {name}
+        {/* Главная / Кухни / {name} */}
+        Главная / {name}
       </div>
 
       {/* Description */}
@@ -77,16 +81,20 @@ export function ProductInfo({
           </div>
 
           {/* Color */}
-          <div className="flex items-start gap-3 p-4 bg-[#f9f9f9] rounded-lg">
+          <div className="flex items-start gap-x-[10px] gap-y-[5px] p-4 bg-[#f9f9f9] rounded-lg flex-wrap">
             <Palette className="size-5 text-[#79bf3a] mt-0.5" />
-            <div className="flex-1">
-              <div className="font-['Montserrat'] text-[#0f0449] text-sm mb-1">
-                Цвет
-              </div>
-              <div className="font-['Montserrat'] text-[#6c6c6c] text-sm">
-                {characteristics.color}
-              </div>
-            </div>
+
+            {characteristics.colors?.map((color) => (
+              <ColorCircle
+                textSm
+                hexColor={color?.hex_value}
+                colorName={color.name}
+                colorStyle={{ marginRight: "5px" }}
+                containerStyleMore={{
+                  margin: "0px",
+                }}
+              />
+            ))}
           </div>
 
           {/* Warranty */}
@@ -116,7 +124,7 @@ export function ProductInfo({
           </div>
 
           {/* Additional characteristics */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+          <div className="flex flex-col gap-[10px]  mt-4">
             <div className="flex justify-between py-2 border-b border-[#e9e9e9]">
               <span className="font-['Montserrat'] text-[#0f0449] text-sm">
                 Производитель

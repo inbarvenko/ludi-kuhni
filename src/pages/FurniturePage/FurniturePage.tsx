@@ -8,40 +8,40 @@ import { useParams } from "react-router-dom";
 import { getFurnitureObject } from "./api/getFurnitureObject";
 import ContactModal from "../../widgets/ContactModal/ContactModal";
 
-const relatedProducts = [
-  {
-    id: "1",
-    name: "Кухня 'Прованс'",
-    price: "от 120 000 ₽",
-    image:
-      "https://images.unsplash.com/photo-1680210849773-f97a41c6b7ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwaW50ZXJpb3IlMjBkZXNpZ24lMjBtb2Rlcm58ZW58MXx8fHwxNzU1NDE0MzQwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    category: "Кухни",
-  },
-  {
-    id: "2",
-    name: "Кухня 'Классик'",
-    price: "от 180 000 ₽",
-    image:
-      "https://images.unsplash.com/photo-1640923365248-3602d58f0b73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwZnVybml0dXJlJTIwY2FiaW5ldHxlbnwxfHx8fDE3NTU0MTQ3Nzd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    category: "Кухни",
-  },
-  {
-    id: "3",
-    name: "Кухня 'Лофт'",
-    price: "от 140 000 ₽",
-    image:
-      "https://images.unsplash.com/photo-1682888813795-192fca4a10d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBraXRjaGVuJTIwZGVzaWdufGVufDF8fHx8MTc1NTQxNDc3N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    category: "Кухни",
-  },
-  {
-    id: "4",
-    name: "Кухня 'Скандинавия'",
-    price: "от 110 000 ₽",
-    image:
-      "https://images.unsplash.com/photo-1682888818718-74b9ffa75907?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBraXRjaGVuJTIwY2FiaW5ldCUyMHdoaXRlfGVufDF8fHx8MTc1NTQxNDc3NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    category: "Кухни",
-  },
-];
+// const relatedProducts = [
+//   {
+//     id: "1",
+//     name: "Кухня 'Прованс'",
+//     price: "от 120 000 ₽",
+//     image:
+//       "https://images.unsplash.com/photo-1680210849773-f97a41c6b7ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwaW50ZXJpb3IlMjBkZXNpZ24lMjBtb2Rlcm58ZW58MXx8fHwxNzU1NDE0MzQwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+//     category: "Кухни",
+//   },
+//   {
+//     id: "2",
+//     name: "Кухня 'Классик'",
+//     price: "от 180 000 ₽",
+//     image:
+//       "https://images.unsplash.com/photo-1640923365248-3602d58f0b73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwZnVybml0dXJlJTIwY2FiaW5ldHxlbnwxfHx8fDE3NTU0MTQ3Nzd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+//     category: "Кухни",
+//   },
+//   {
+//     id: "3",
+//     name: "Кухня 'Лофт'",
+//     price: "от 140 000 ₽",
+//     image:
+//       "https://images.unsplash.com/photo-1682888813795-192fca4a10d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBraXRjaGVuJTIwZGVzaWdufGVufDF8fHx8MTc1NTQxNDc3N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+//     category: "Кухни",
+//   },
+//   {
+//     id: "4",
+//     name: "Кухня 'Скандинавия'",
+//     price: "от 110 000 ₽",
+//     image:
+//       "https://images.unsplash.com/photo-1682888818718-74b9ffa75907?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBraXRjaGVuJTIwY2FiaW5ldCUyMHdoaXRlfGVufDF8fHx8MTc1NTQxNDc3NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+//     category: "Кухни",
+//   },
+// ];
 
 const FurniturePage: React.FC = () => {
   const { id } = useParams();
@@ -51,6 +51,8 @@ const FurniturePage: React.FC = () => {
     queryKey: [`furniture-obj?id=${id}`], // Уникальный ключ для кэша
     queryFn: () => getFurnitureObject(id),
   });
+
+  console.log("furniture.colors", furniture?.colors);
 
   const openModal = () => {
     setIsContactModalOpen(true);
@@ -85,7 +87,7 @@ const FurniturePage: React.FC = () => {
               description={furniture.description || ""}
               characteristics={{
                 material: furniture.details || "",
-                color: furniture.color || "",
+                colors: furniture.colors || null,
                 warranty: furniture.warranty || "",
                 dimensions: furniture.dimensions || "",
                 manufacturer: "Люди! Кухни",
@@ -99,7 +101,7 @@ const FurniturePage: React.FC = () => {
       </div>
 
       {/* Related products */}
-      <RelatedProducts products={relatedProducts} />
+      <RelatedProducts products={furniture.recommendations} />
     </FurniturePageWrapper>
   );
 };

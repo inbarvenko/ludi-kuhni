@@ -6,9 +6,20 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { ContentWrapper } from "./ContentWrapper";
 import { useQuery } from "@tanstack/react-query";
 import { getRooms } from "../../widgets/RoomsBlock/api/getRooms";
+import MobileHeader from "../../shared/ui/MobileHeader/MobileHeader";
+import { Menu } from "@mui/icons-material";
 
 const Content: React.FC = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
   const navigate = useNavigate();
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
 
   const width = useMemo(() => {
     return window.innerWidth;
@@ -70,13 +81,22 @@ const Content: React.FC = () => {
               ))}
             </div>
           ) : (
-            <img
-              src="/src/shared/constants/images/svg/burger.svg"
-              className="burger"
-            />
+            <button
+              onClick={handleOpen}
+              className="cursor-pointer p-2 hover:bg-[#e9e9e9] rounded-lg transition-colors"
+            >
+              <Menu className="size-6 text-[#0f0449]" />
+            </button>
           )}
         </div>
       </div>
+
+      <MobileHeader
+        rooms={rooms || []}
+        isOpen={isOpen}
+        // onOpen={handleOpen}
+        onClose={handleClose}
+      />
 
       <Outlet />
     </ContentWrapper>

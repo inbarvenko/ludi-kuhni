@@ -5,8 +5,8 @@ export const RoomBlockWrapper = styled.div<{ width: number }>`
   display: flex;
   position: relative;
 
-  width: ${(props) => (props.width > 768 ? "303px" : "40vw")};
-  height: ${(props) => (props.width > 768 ? "303px" : "40vw")};
+  width: ${(props) => (props.width > 768 ? "303px" : "41vw")};
+  height: ${(props) => (props.width > 768 ? "303px" : "41vw")};
 
   transform-origin: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -26,7 +26,7 @@ export const RoomBlockWrapper = styled.div<{ width: number }>`
 
   .block {
     width: 100%;
-    margin: 10px;
+    margin: ${(props) => props.width > 768 && "10px"};
 
     z-index: 3;
 
@@ -46,7 +46,7 @@ export const RoomBlockWrapper = styled.div<{ width: number }>`
       left: 0;
       right: 0;
       z-index: 2; /* Над размытым блоком */
-      padding: 20px;
+      padding: ${(props) => (props.width > 768 ? "20px" : "10px")};
       text-align: center;
     }
 

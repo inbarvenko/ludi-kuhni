@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 const FaqBlockWrapper = styled.div<{ width: number }>`
   width: 100%;
 
-  padding: ${(props) => (props.width > 768 ? "0 78px" : "24px 24px 0 24px")};
+  padding: ${(props) => (props.width > 768 ? "0 78px" : "24px")};
 
   display: flex;
   flex-direction: column;
