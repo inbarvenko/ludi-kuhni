@@ -5,8 +5,10 @@ export const RoomBlockWrapper = styled.div<{ width: number }>`
   display: flex;
   position: relative;
 
-  width: ${(props) => (props.width > 768 ? "303px" : "41vw")};
-  height: ${(props) => (props.width > 768 ? "303px" : "41vw")};
+  width: ${(props) =>
+    props.width <= 360 ? "100%" : props.width > 768 ? "303px" : "40vw"};
+  height: ${(props) =>
+    props.width <= 360 ? "100%" : props.width > 768 ? "303px" : "40vw"};
 
   transform-origin: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -29,6 +31,8 @@ export const RoomBlockWrapper = styled.div<{ width: number }>`
     margin: ${(props) => props.width > 768 && "10px"};
 
     z-index: 3;
+    border-radius: ${(props) => (props.width > 768 ? "30px" : "20px")};
+    overflow: hidden;
 
     img {
       width: 100%;
@@ -57,7 +61,7 @@ export const RoomBlockWrapper = styled.div<{ width: number }>`
       position: absolute;
       height: ${(props) => (props.width > 768 ? "74px" : "40px")};
       background-color: ${colors["light"].white};
-      filter: ${(props) => (props.width > 768 ? "blur(20px)" : "blur(10px)")};
+      filter: ${(props) => (props.width > 768 ? "blur(20px)" : "blur(14px)")};
     }
   }
 `;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../shared/constants/colors";
-import ill from "../../shared/constants/images/svg/main_1.png";
+import ill from "../../shared/constants/images/svg/main_2.jpg";
 
 export const HomePageWrapper = styled.div<{ width: number }>`
   height: 100%;
@@ -43,19 +43,16 @@ export const HomePageWrapper = styled.div<{ width: number }>`
 
     display: flex;
     align-items: center;
+    justify-content: ${(props) => props.width <= 768 && "center"};
 
     &-buttons {
       margin-top: ${(props) => (props.width > 768 ? "48px" : "18px")};
       display: flex;
       flex-direction: row;
-      gap: 24px;
+      gap: ${(props) => (props.width > 768 ? "24px" : "12px")};
       min-height: ${(props) => (props.width > 768 ? "56px" : "28px")};
       width: ${(props) => (props.width > 768 ? "521px" : "247px")};
       z-index: 2;
-
-      span {
-        font-size: 18px;
-      }
 
       &-1 {
         width: 100%;
@@ -136,16 +133,19 @@ export const HomePageWrapper = styled.div<{ width: number }>`
   .block-name {
     font-size: ${(props) => (props.width > 768 ? "24px" : "18px")};
     font-weight: 500;
+    padding-bottom: 12px;
     font-family: "Montserrat", sans-serif;
     color: ${colors["light"].brown};
 
-    padding-bottom: 20px;
+    /* padding-bottom: 10px; */
   }
 
   .block-2 {
     width: 100%;
     overflow: ${(props) => props.width > 768 && "hidden"};
-    height: ${(props) => (props.width > 768 ? "713px" : "auto")};
+    height: ${(props) =>
+      props.width > 1280 ? "713px" : props.width > 768 ? "544px" : "auto"};
+
     position: relative;
     display: flex;
     align-items: center;
@@ -173,7 +173,7 @@ export const HomePageWrapper = styled.div<{ width: number }>`
         props.width > 768 ? "no-repeat" : "repeat"};
       /* background-size: cover; */
       background-size: ${(props) =>
-        props.width > 768 ? "100% auto" : "cover"};
+        props.width > 768 ? "100% 100%" : "cover"};
 
       color: ${colors["light"].brown};
       font-family: "Montserrat", sans-serif;
@@ -193,7 +193,12 @@ export const HomePageWrapper = styled.div<{ width: number }>`
       }
 
       &-main {
-        font-size: ${(props) => (props.width > 768 ? "18px" : "14px")};
+        font-size: ${(props) =>
+          props.width > 1320 ? "18px" : props.width > 768 ? "16px" : "14px"};
+
+        p {
+          font-size: 14px !important;
+        }
       }
     }
 
@@ -244,7 +249,7 @@ export const HomePageWrapper = styled.div<{ width: number }>`
     padding: ${(props) => (props.width > 768 ? "0 78px" : "0 24px")};
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: ${(props) => (props.width > 768 ? "24px" : "12px")};
 
     &-furniture {
       padding-top: ${(props) => (props.width > 768 ? "48px" : "24px")};
@@ -294,7 +299,7 @@ export const HomePageWrapper = styled.div<{ width: number }>`
     padding: ${(props) => (props.width > 768 ? "0 78px" : "0 24px")};
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: ${(props) => (props.width > 768 ? "24px" : "12px")};
 
     &-text {
       font-family: "Montserrat", sans-serif;
@@ -503,25 +508,43 @@ export const HomePageWrapper = styled.div<{ width: number }>`
         z-index: -1;
       }
     }
+  }
 
-    .map-block {
+  .map-block {
+    display: flex;
+    flex-direction: column;
+
+    &-mobile {
       display: flex;
       flex-direction: column;
 
-      &-mobile {
-        display: flex;
-        flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 20px;
+    }
+  }
 
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-      }
+  .contacts {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 24px 0 24px;
+
+    gap: 16px;
+
+    p {
+      font-size: 14px !important;
     }
   }
 
   .footer {
-    height: 150px;
+    height: ${(props) => (props.width > 768 ? "150px" : "100px")};
     background-color: ${colors["light"].main_blue};
     margin-top: 20px;
+
+    color: ${colors["light"].white};
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    justify-content: center;
   }
 `;

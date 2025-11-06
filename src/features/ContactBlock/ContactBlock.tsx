@@ -6,7 +6,7 @@ import telegram from "../../shared/constants/images/svg/tel.svg";
 import whatsapp from "../../shared/constants/images/svg/wh.svg";
 import vk from "../../shared/constants/images/svg/vk.svg";
 
-function LocationIcon() {
+export function LocationIcon() {
   return (
     <div className="relative shrink-0 size-6">
       <svg
@@ -23,7 +23,7 @@ function LocationIcon() {
   );
 }
 
-function ScheduleIcon() {
+export function ScheduleIcon() {
   return (
     <div className="relative shrink-0 size-6">
       <svg
@@ -40,7 +40,7 @@ function ScheduleIcon() {
   );
 }
 
-function PhoneIcon() {
+export function PhoneIcon() {
   return (
     <div className="relative shrink-0 size-6">
       <svg
@@ -57,7 +57,7 @@ function PhoneIcon() {
   );
 }
 
-function EmailIcon() {
+export function EmailIcon() {
   return (
     <div className="relative shrink-0 size-6">
       <svg
@@ -74,7 +74,7 @@ function EmailIcon() {
   );
 }
 
-function TelegramIcon() {
+export function TelegramIcon() {
   return (
     <div className="h-[27px] relative shrink-0 w-6">
       <svg
@@ -91,19 +91,27 @@ function TelegramIcon() {
   );
 }
 
-function ContactItem({
+export function ContactItem({
   icon,
   title,
+  className,
   content,
   isClickable = false,
 }: {
   icon: React.ReactNode;
   title: string;
+  className?: string;
   content: string | React.ReactNode;
   isClickable?: boolean;
 }) {
   return (
-    <div className="box-border content-stretch flex flex-row gap-3 items-start justify-start p-0 relative shrink-0">
+    <div
+      className={
+        className +
+        " " +
+        "box-border content-stretch flex flex-row gap-3 items-start justify-start p-0 relative shrink-0"
+      }
+    >
       {icon}
       <div className="box-border content-stretch flex flex-col gap-3 items-start justify-start leading-[0] p-0 relative shrink-0 text-[#0f0449] text-left">
         <div
@@ -128,7 +136,7 @@ function ContactItem({
   );
 }
 
-function PhoneNumbers() {
+export function PhoneNumbers() {
   return (
     <div className="box-border content-stretch flex flex-row font-['Montserrat',_sans-serif] font-normal gap-3 items-start justify-start leading-[0] p-0 relative shrink-0 text-[#0f0449] text-[14px] text-left text-nowrap">
       <div className="relative shrink-0">
@@ -151,7 +159,7 @@ function PhoneNumbers() {
   );
 }
 
-function PhoneContact() {
+export function PhoneContact() {
   return (
     <div className="box-border content-stretch flex flex-row gap-3 items-start justify-start p-0 relative shrink-0 w-full">
       <PhoneIcon />
@@ -168,7 +176,7 @@ function PhoneContact() {
   );
 }
 
-function SocialIcons() {
+export function SocialIcons() {
   return (
     <div className="box-border content-stretch flex flex-row gap-6 items-center justify-center p-0 relative shrink-0 w-full">
       <a
@@ -196,7 +204,7 @@ function SocialIcons() {
 export default function ContactBlock() {
   return (
     <div className="absolute contents left-0 top-0">
-      <div className="absolute bg-[#f9f9f9] blur-[35.5px] filter h-[592px] left-0 rounded-[20px] top-0 w-[521px]" />
+      <div className="absolute bg-[#f9f9f9] blur-[35.5px] filter h-[515px] left-0 rounded-[20px] top-0 w-[521px]" />
       <div className="absolute box-border content-stretch flex flex-col gap-9 items-center justify-center left-[100px] p-0 top-[62px] w-[322px]">
         <div className="box-border content-stretch flex flex-col gap-6 items-center justify-start p-0 relative shrink-0 w-full">
           <div
@@ -237,7 +245,7 @@ export default function ContactBlock() {
               isClickable
             />
 
-            <ContactItem
+            {/* <ContactItem
               icon={<TelegramIcon />}
               title="Наш канал в telegram"
               content={
@@ -251,7 +259,7 @@ export default function ContactBlock() {
                 </a>
               }
               isClickable
-            />
+            /> */}
           </div>
         </div>
         <SocialIcons />

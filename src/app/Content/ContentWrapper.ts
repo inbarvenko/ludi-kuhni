@@ -3,7 +3,8 @@ import { colors } from "../../shared/constants/colors";
 
 export const ContentWrapper = styled.div<{ width: number }>`
   display: flex;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  /* height: 100%; */
   overflow: hidden;
   display: flex;
   flex-direction: column;

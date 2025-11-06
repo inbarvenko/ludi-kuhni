@@ -21,6 +21,7 @@
     "@yandex/ymaps3-types": "^1.0.17084091",
     "antd": "^5.26.5",
     "axios": "^1.10.0",
+    "dayjs": "^1.11.19",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.539.0",
     "motion": "^12.23.12",

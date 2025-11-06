@@ -1,10 +1,14 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 import svgPaths from "../Catalogue.svg";
 
-const CatalogHeader: React.FC = () => {
+type Props = {
+  children?: ReactNode;
+};
+
+const CatalogHeader: React.FC<Props> = ({ children }: Props) => {
   return (
     <div
-      className={` bg-[#F6F0E9] overflow-clip relative shrink-0 w-full flex justify-center items-center py-[40px]`}
+      className={` bg-[#F6F0E9] overflow-clip relative shrink-0 w-full flex justify-center items-center flex-col gap-[24px] py-[40px]`}
     >
       <div
         className="absolute h-[346px] left-[1026px] top-[72px] w-[542px]"
@@ -61,6 +65,8 @@ const CatalogHeader: React.FC = () => {
           Каталог
         </p>
       </div>
+
+      {children}
     </div>
   );
 };

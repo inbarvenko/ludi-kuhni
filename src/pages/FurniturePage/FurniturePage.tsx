@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import FurniturePageWrapper from "./FurniturePageWrapper";
 import { ProductGallery } from "./ui/ProductGallery";
 import { ProductInfo } from "./ui/ProductInfo";
@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getFurnitureObject } from "./api/getFurnitureObject";
 import ContactModal from "../../widgets/ContactModal/ContactModal";
+import { ContentLoader } from "../../widgets/ContentLoader/ContentLoader";
 
 // const relatedProducts = [
 //   {
@@ -47,7 +48,9 @@ const FurniturePage: React.FC = () => {
   const { id } = useParams();
   const [isContactModalOpen, setIsContactModalOpen] = React.useState(false);
 
-  const { data: furniture } = useQuery({
+  const isMobile = useMemo(() => window.innerWidth < 768, []);
+
+  const { data: furniture, isLoading } = useQuery({
     queryKey: [`furniture-obj?id=${id}`], // Уникальный ключ для кэша
     queryFn: () => getFurnitureObject(id),
   });
@@ -62,46 +65,58 @@ const FurniturePage: React.FC = () => {
 
   return (
     <FurniturePageWrapper>
-      {isContactModalOpen && (
-        <ContactModal
-          isOpen={isContactModalOpen}
-          onClose={() => setIsContactModalOpen(false)}
-        />
-      )}
-
-      {/* Main content */}
-      <div className="container mx-auto px-[78px] py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* Product gallery */}
-          <div>
-            <ProductGallery
-              images={furniture.images}
-              productName={furniture.model}
-            />
-          </div>
-
-          {/* Product info */}
-          <div>
-            <ProductInfo
-              name={furniture.model}
-              description={furniture.description || ""}
-              characteristics={{
-                material: furniture.details || "",
-                colors: furniture.colors || null,
-                warranty: furniture.warranty || "",
-                dimensions: furniture.dimensions || "",
-                manufacturer: "Люди! Кухни",
-                // style: furniture.filters.find((filter) => filter === 'Классика') || '',
-                installation: "Включен в стоимость",
-              }}
-              modalOpen={openModal}
-            />
-          </div>
+      {isLoading ? (
+        <div className="h-full w-full mh-[70vh]">
+          <ContentLoader text="Загрузка объекта..." />
         </div>
-      </div>
+      ) : (
+        <>
+          {isContactModalOpen && (
+            <ContactModal
+              isOpen={isContactModalOpen}
+              onClose={() => setIsContactModalOpen(false)}
+            />
+          )}
 
-      {/* Related products */}
-      <RelatedProducts products={furniture.recommendations} />
+          {/* Main content */}
+          <div
+            className={`container mx-auto mh-[70vh] ${
+              isMobile ? "px-[24px]" : "px-[78px]"
+            } py-12`}
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+              {/* Product gallery */}
+              <div>
+                <ProductGallery
+                  images={furniture.images}
+                  productName={furniture.model}
+                />
+              </div>
+
+              {/* Product info */}
+              <div>
+                <ProductInfo
+                  name={furniture.model}
+                  description={furniture.description || ""}
+                  characteristics={{
+                    material: furniture.details || "",
+                    colors: furniture.colors || null,
+                    warranty: furniture.warranty || "",
+                    dimensions: furniture.dimensions || "",
+                    manufacturer: "Люди! Кухни",
+                    // style: furniture.filters.find((filter) => filter === 'Классика') || '',
+                    installation: "Включен в стоимость",
+                  }}
+                  modalOpen={openModal}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Related products */}
+          <RelatedProducts products={furniture.recommendations} />
+        </>
+      )}
     </FurniturePageWrapper>
   );
 };

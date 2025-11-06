@@ -2,11 +2,18 @@ import React, { useMemo } from "react";
 import { Helmet } from "react-helmet";
 import { HomePageWrapper } from "./HomePageWrapper";
 
-import { Button } from "antd";
+import { Button, Image } from "antd";
 import { details } from "./mock/home.data";
 import DoubleButton from "../../shared/ui/DoubleButton/DoubleButton";
 import FaqBlock from "../../widgets/FaqBlock/FaqBlock";
-import ContactBlock from "../../features/ContactBlock/ContactBlock";
+import ContactBlock, {
+  ContactItem,
+  EmailIcon,
+  LocationIcon,
+  PhoneContact,
+  ScheduleIcon,
+  SocialIcons,
+} from "../../features/ContactBlock/ContactBlock";
 import { RoomsBlock } from "../../widgets/RoomsBlock/RoomsBlock";
 import ContactModal from "../../widgets/ContactModal/ContactModal";
 
@@ -34,7 +41,8 @@ const HomePage: React.FC = () => {
             <div className="block-1-background"></div>
 
             <div className="block-1-name">
-              <img
+              <Image
+                preview={false}
                 src="/ludi!kuhni.svg"
                 alt="Название"
                 className="block-1-name-img"
@@ -68,39 +76,46 @@ const HomePage: React.FC = () => {
 
         <div className="block-2">
           <div className="block-2-text">
-            <p className="block-2-text-padding block-name">/О нас</p>
+            <p className="text-md block-2-text-padding block-name">/О нас</p>
 
-            <p className="block-2-text-padding block-2-text-main">
-              Добро пожаловать в <b>Люди! Кухни</b>
-              <br />– семейный бизнес, развивающийся уже
-              <br />
+            <p className="text-md block-2-text-padding block-2-text-main">
+              Добро пожаловать в <b>Люди! Кухни </b>
+              {width > 1280 && <br />}– семейный бизнес, развивающийся уже
               <b> в трех поколениях</b>, с собственным производством корпусной
-              мебели. Наша большая команда профессионалов вкладывает душу в
-              каждую деталь, чтобы ваша кухня стала идеальным сочетанием
-              комфорта, стиля и функциональности.
+              мебели.
+              {width > 1320 && (
+                <>
+                  Наша большая команда профессионалов вкладывает душу в каждую
+                  деталь, чтобы ваша кухня стала идеальным сочетанием комфорта,
+                  стиля и функциональности.
+                </>
+              )}
               {width > 768 && (
                 <>
                   <br />
                   <br />
-                  Мы изготавливаем как кухни,
-                  {/* <br /> */}
-                  так и шкафы-купе и мебель для других
-                  {/* <br /> */}
-                  комнат.
-                  <b>
-                    Именно мы поможем и подскажем, как оформить дом в стиле
-                    вашей мечты.
-                  </b>
-                  В нашем большом каталоге можно найти
-                  {/* <br /> */}
-                  примеры и вдохновиться перед заказом.
+                  Мы изготавливаем как кухни, {/* <br /> */}
+                  так и шкафы-купе и мебель для других комнат.
+                  {width > 1024 && (
+                    <>
+                      {" "}
+                      <b>
+                        {" "}
+                        Именно мы поможем и подскажем, как оформить дом в стиле
+                        вашей мечты.
+                      </b>{" "}
+                      В нашем большом каталоге можно найти {/* <br /> */}
+                      примеры и вдохновиться перед заказом.
+                    </>
+                  )}
+                </>
+              )}
+              {width > 1280 && (
+                <>
                   <br />
-                  <br />
-                  Спасибо, что остаетесь с нами.
-                  {/* <br /> */}
-                  Мы гордимся тем, что создаем мебель,
-                  {/* <br /> */}
-                  которая делает ваш дом уютнее и удобнее.
+                  <br /> Спасибо, что остаетесь с нами.
+                  {/* <br /> */} Мы гордимся тем, что создаем мебель,
+                  {/* <br /> */} которая делает ваш дом уютнее и удобнее.
                 </>
               )}
             </p>
@@ -138,7 +153,7 @@ const HomePage: React.FC = () => {
         </div>
 
         <div className="block-3">
-          <p className="block-name">/Мы производим</p>
+          <p className="block-name">/ Мы производим</p>
 
           <RoomsBlock width={width} />
         </div>
@@ -296,6 +311,40 @@ const HomePage: React.FC = () => {
                 <p className="flex align-center justify-center leading-[normal] text-accent">
                   Свяжитесь с нами!
                 </p>
+
+                <div className="contacts">
+                  <ContactItem
+                    icon={<LocationIcon />}
+                    title="Адрес"
+                    className="item"
+                    content="г. Таганрог, ул. Петровская 15"
+                  />
+
+                  <ContactItem
+                    icon={<ScheduleIcon />}
+                    title="График работы"
+                    className="item"
+                    content="Пн-Сб 10.00 - 19.00"
+                  />
+
+                  <PhoneContact />
+
+                  <ContactItem
+                    icon={<EmailIcon />}
+                    title="Почта"
+                    content={
+                      <a
+                        href="mailto:barvenko@list.ru"
+                        className="[text-decoration-line:underline] [text-decoration-style:solid] [text-underline-position:from-font] block leading-[normal] whitespace-pre hover:text-[#79BF3A] transition-colors"
+                      >
+                        barvenko@list.ru
+                      </a>
+                    }
+                    isClickable
+                  />
+
+                  <SocialIcons />
+                </div>
               </div>
             </div>
           )}
@@ -305,13 +354,30 @@ const HomePage: React.FC = () => {
             style={{ width: "100vw", height: "100%", position: "relative" }}
           >
             <div style={{ position: "relative", overflow: "hidden" }}>
-              <iframe
-                src="https://yandex.ru/map-widget/v1/?ll=38.936850%2C47.207398&mode=usermaps&source=constructorLink&um=constructor%3Ad1a5893aac5359b75107c15a65c9184e3bebff8fcf41061271f3a2674e1830c4&z=16"
-                width="100vw"
-                height="400"
-                allowFullScreen={true}
-                style={{ position: "relative", height: "80vh", width: "100vw" }}
-              ></iframe>
+              {width > 768 ? (
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?ll=38.936850%2C47.207398&mode=usermaps&source=constructorLink&um=constructor%3Ad1a5893aac5359b75107c15a65c9184e3bebff8fcf41061271f3a2674e1830c4&z=16"
+                  width="100vw"
+                  height="100%"
+                  allowFullScreen={true}
+                  style={{
+                    position: "relative",
+                    height: "80vh",
+                    width: "100vw",
+                  }}
+                ></iframe>
+              ) : (
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad1a5893aac5359b75107c15a65c9184e3bebff8fcf41061271f3a2674e1830c4&amp;source=constructor"
+                  width="100%"
+                  height="408"
+                  style={{
+                    position: "relative",
+                    height: "50vh",
+                    width: "100vw",
+                  }}
+                ></iframe>
+              )}
             </div>
 
             {width > 768 && (
@@ -322,8 +388,6 @@ const HomePage: React.FC = () => {
               </div>
             )}
           </div>
-
-          <div className="footer"></div>
         </div>
       </div>
     </HomePageWrapper>

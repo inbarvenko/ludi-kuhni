@@ -2,6 +2,7 @@ import { X } from "lucide-react";
 import type React from "react";
 import type { RoomsHomeType } from "../../../features/RoomBlock/types";
 import { useNavigate } from "react-router-dom";
+import { scrollToTop } from "../../model/scrollToTop";
 
 type Props = {
   isOpen: boolean;
@@ -15,6 +16,8 @@ const MobileHeader: React.FC<Props> = ({ isOpen, onClose, rooms }: Props) => {
 
   const onCatalogueClick = (id: number) => {
     navigate("/catalog?room=" + id);
+    scrollToTop();
+    onClose();
   };
 
   return (

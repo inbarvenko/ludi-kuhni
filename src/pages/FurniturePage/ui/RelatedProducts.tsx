@@ -2,6 +2,8 @@ import { Image } from "antd";
 import { ArrowRight } from "lucide-react";
 import type { RecommendationType } from "../../../shared/types/types";
 import { useNavigate } from "react-router-dom";
+import { useMemo } from "react";
+import { scrollToTop } from "../../../shared/model/scrollToTop";
 
 interface RelatedProductsProps {
   products: RecommendationType[];
@@ -10,17 +12,23 @@ interface RelatedProductsProps {
 export function RelatedProducts({ products }: RelatedProductsProps) {
   const navigate = useNavigate();
 
+  const isMobile = useMemo(() => window.innerWidth < 768, []);
+
   const navigateCatalogue = () => {
     navigate("/catalog?room=2");
+    scrollToTop();
   };
 
   const onItemClick = (id: number) => {
     navigate("/product/" + id);
+    scrollToTop();
   };
 
   return (
     <div className="bg-[#f9f9f9] py-16">
-      <div className="container mx-auto px-[78px]">
+      <div
+        className={`container mx-auto ${isMobile ? "px-[24px]" : "px-[78px]"}`}
+      >
         <div className="mb-12">
           <h2 className="font-['Montserrat'] text-[#6c6c6c] text-2xl mb-2">
             / Похожие товары

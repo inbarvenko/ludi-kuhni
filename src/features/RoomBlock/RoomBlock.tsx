@@ -2,6 +2,7 @@ import React from "react";
 import type { RoomsHomeType } from "./types";
 import { RoomBlockWrapper } from "./RoomBlockWrapper";
 import { useNavigate } from "react-router-dom";
+import { scrollToTop } from "../../shared/model/scrollToTop";
 
 type Props = RoomsHomeType & {
   width?: number;
@@ -11,7 +12,8 @@ const RoomBlock: React.FC<Props> = ({ image, name, width, id }: Props) => {
   const navigate = useNavigate();
 
   const onCatalogueClick = (id: number) => {
-    navigate("/catalog?room=" + id);
+    navigate("/catalog?room=" + id, { preventScrollReset: true });
+    scrollToTop();
   };
 
   return (

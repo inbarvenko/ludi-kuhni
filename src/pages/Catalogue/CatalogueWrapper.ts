@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { colors } from "../../shared/constants/colors";
 
-export const CatalogueWrapper = styled.div`
+type Props = {
+  isMobile?: boolean;
+};
+
+export const CatalogueWrapper = styled.div<Props>`
   .ant-card-body {
     padding: 0 !important;
   }
@@ -45,8 +49,10 @@ export const CatalogueWrapper = styled.div`
   .badge {
     background-color: ${colors["light"].accent_green};
     color: ${colors["light"].white};
-    padding: 10px 15px;
+    padding: ${(p) => (p.isMobile ? "5px 10px" : "10px 15px")};
     border-radius: 100px;
+
+    font-size: ${(p) => (p.isMobile ? "12px" : "14px")};
 
     display: flex;
     flex-direction: row;

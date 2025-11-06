@@ -30,7 +30,7 @@ const ColorCircle: React.FC<ColorCircleProps> = ({
   const containerStyle: React.CSSProperties = {
     display: "flex",
     alignItems: "center",
-    margin: "10px",
+    margin: "0 10px",
   };
 
   return (

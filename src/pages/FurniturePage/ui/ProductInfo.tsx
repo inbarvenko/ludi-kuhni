@@ -26,9 +26,9 @@ export function ProductInfo({
 }: ProductInfoProps) {
   console.log("characteristics.colors", characteristics.colors);
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6">
       {/* Breadcrumb */}
-      <div className="font-['Montserrat'] text-[#6c6c6c] text-sm">
+      <div className="font-['Montserrat'] text-[#79bf3a] text-lg ">
         {/* Главная / Кухни / {name} */}
         Главная / {name}
       </div>
