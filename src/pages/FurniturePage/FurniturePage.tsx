@@ -50,23 +50,23 @@ const FurniturePage: React.FC = () => {
 
   const isMobile = useMemo(() => window.innerWidth < 768, []);
 
-  const { data: furniture, isLoading } = useQuery({
+  const {
+    data: furniture,
+    isLoading,
+    isFetching,
+  } = useQuery({
     queryKey: [`furniture-obj?id=${id}`], // Уникальный ключ для кэша
     queryFn: () => getFurnitureObject(id),
   });
-
-  console.log("furniture.colors", furniture?.colors);
 
   const openModal = () => {
     setIsContactModalOpen(true);
   };
 
-  if (!furniture) return;
-
   return (
     <FurniturePageWrapper>
-      {isLoading ? (
-        <div className="h-full w-full mh-[70vh]">
+      {isLoading || isFetching || !furniture ? (
+        <div className="h-full w-full mh-[40vh]">
           <ContentLoader text="Загрузка объекта..." />
         </div>
       ) : (
@@ -78,42 +78,34 @@ const FurniturePage: React.FC = () => {
             />
           )}
 
-          {/* Main content */}
           <div
             className={`container mx-auto mh-[70vh] ${
               isMobile ? "px-[24px]" : "px-[78px]"
             } py-12`}
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-              {/* Product gallery */}
-              <div>
-                <ProductGallery
-                  images={furniture.images}
-                  productName={furniture.model}
-                />
-              </div>
+              <ProductGallery
+                images={furniture.images}
+                productName={furniture.model}
+              />
 
-              {/* Product info */}
-              <div>
-                <ProductInfo
-                  name={furniture.model}
-                  description={furniture.description || ""}
-                  characteristics={{
-                    material: furniture.details || "",
-                    colors: furniture.colors || null,
-                    warranty: furniture.warranty || "",
-                    dimensions: furniture.dimensions || "",
-                    manufacturer: "Люди! Кухни",
-                    // style: furniture.filters.find((filter) => filter === 'Классика') || '',
-                    installation: "Включен в стоимость",
-                  }}
-                  modalOpen={openModal}
-                />
-              </div>
+              <ProductInfo
+                name={furniture.model}
+                description={furniture.description || ""}
+                characteristics={{
+                  material: furniture.details || "",
+                  colors: furniture.colors || null,
+                  warranty: furniture.warranty || "",
+                  dimensions: furniture.dimensions || "",
+                  manufacturer: "Люди! Кухни",
+                  // style: furniture.filters.find((filter) => filter === 'Классика') || '',
+                  installation: "Включен в стоимость",
+                }}
+                modalOpen={openModal}
+              />
             </div>
           </div>
 
-          {/* Related products */}
           <RelatedProducts products={furniture.recommendations} />
         </>
       )}

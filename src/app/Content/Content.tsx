@@ -133,7 +133,9 @@ const Content: React.FC = () => {
             onClose={handleClose}
           />
 
-          <Outlet />
+          <div className={width > 768 ? `mh-[700px]` : `mh-[400px]`}>
+            <Outlet />
+          </div>
 
           <Footer />
         </>
