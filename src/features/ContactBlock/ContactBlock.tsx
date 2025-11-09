@@ -195,7 +195,7 @@ export function SocialIcons() {
         href="https://vk.com/ludikuhni?from=groups"
         className="bg-center bg-cover bg-no-repeat shrink-0 size-9 hover:scale-110 transition-transform cursor-pointer"
         style={{ backgroundImage: `url('${vk}')` }}
-        title="VKontakte"
+        title="VK"
       />
     </div>
   );
@@ -236,10 +236,10 @@ export default function ContactBlock() {
               title="Почта"
               content={
                 <a
-                  href="mailto:barvenko@list.ru"
+                  href="mailto:ludikuhni@yandex.ru"
                   className="[text-decoration-line:underline] [text-decoration-style:solid] [text-underline-position:from-font] block leading-[normal] whitespace-pre hover:text-[#79BF3A] transition-colors"
                 >
-                  barvenko@list.ru
+                  ludikuhni@yandex.ru
                 </a>
               }
               isClickable

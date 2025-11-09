@@ -149,7 +149,7 @@ export function Footer() {
                 className="flex items-start space-x-2 text-sm text-gray-300 hover:text-[#79bf3a] transition-colors group"
               >
                 <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span>barvenko@list.ru</span>
+                <span>ludikuhni@yandex.ru</span>
               </a>
             </div>
           </div>

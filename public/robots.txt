@@ -1,0 +1,5 @@
+Copy
+User-agent: *
+Allow: /
+
+Sitemap: https://ludikuhni.ru/sitemap.xml

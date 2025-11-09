@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { Helmet } from "react-helmet";
 import { HomePageWrapper } from "./HomePageWrapper";
 
 import { Button, Image } from "antd";
@@ -16,6 +15,7 @@ import ContactBlock, {
 } from "../../features/ContactBlock/ContactBlock";
 import { RoomsBlock } from "../../widgets/RoomsBlock/RoomsBlock";
 import ContactModal from "../../widgets/ContactModal/ContactModal";
+import { Helmet } from "react-helmet";
 
 const HomePage: React.FC = () => {
   const [isContactModalOpen, setIsContactModalOpen] = React.useState(false);
@@ -26,7 +26,7 @@ const HomePage: React.FC = () => {
 
   return (
     <HomePageWrapper width={width}>
-      <Helmet title="Главная страница" />
+      <Helmet title="Люди!Кухни" />
 
       {isContactModalOpen && (
         <ContactModal
@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
               <Image
                 preview={false}
                 src="/ludi!kuhni.svg"
-                alt="Название"
+                alt="Люди!Кухни"
                 className="block-1-name-img"
               />
 
@@ -120,7 +120,8 @@ const HomePage: React.FC = () => {
               )}
             </p>
 
-            {width < 768 && <p className="block-2-text-more">Подробнее →</p>}
+            {/* Добавить страницу О нас */}
+            {/* {width < 768 && <p className="block-2-text-more">Подробнее →</p>} */}
           </div>
 
           {width > 768 ? (
@@ -334,10 +335,10 @@ const HomePage: React.FC = () => {
                     title="Почта"
                     content={
                       <a
-                        href="mailto:barvenko@list.ru"
+                        href="mailto:ludikuhni@yandex.ru"
                         className="[text-decoration-line:underline] [text-decoration-style:solid] [text-underline-position:from-font] block leading-[normal] whitespace-pre hover:text-[#79BF3A] transition-colors"
                       >
-                        barvenko@list.ru
+                        ludikuhni@yandex.ru
                       </a>
                     }
                     isClickable

@@ -20,6 +20,7 @@ import CatalogHeader from "./CatalogHeader/CatalogHeader";
 import ColorCircle from "../../shared/ui/ColorCircle/ColorCircle";
 import { scrollToTop } from "../../shared/model/scrollToTop";
 import { ContentLoader } from "../../widgets/ContentLoader/ContentLoader";
+import { Helmet } from "react-helmet";
 
 const CatalogPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -173,6 +174,7 @@ const CatalogPage: React.FC = () => {
   return (
     <CatalogueWrapper isMobile={isMobile} className="min-h-screen bg-gray-50">
       {/* Catalog Header */}
+      <Helmet title="Каталог Люди!Кухни" />
 
       <CatalogHeader>
         {isMobile && (
@@ -611,7 +613,7 @@ const CatalogPage: React.FC = () => {
                 layout
                 className={
                   viewMode === "grid"
-                    ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                    ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                     : "space-y-4"
                 }
               >

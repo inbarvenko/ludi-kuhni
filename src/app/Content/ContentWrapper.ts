@@ -11,7 +11,7 @@ export const ContentWrapper = styled.div<{ width: number }>`
   max-width: 100vw;
 
   .logo {
-    max-width: ${(props) => (props.width > 768 ? "64px" : "45px")};
+    max-width: ${(props) => (props.width > 860 ? "64px" : "45px")};
     transform-origin: center;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -24,45 +24,45 @@ export const ContentWrapper = styled.div<{ width: number }>`
   .header {
     &-1 {
       max-width: 100%;
-      min-height: ${(props) => (props.width > 768 ? "54px" : "35px")};
+      min-height: ${(props) => (props.width > 860 ? "54px" : "35px")};
 
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
-      gap: ${(props) => (props.width > 768 ? "24px" : "18px")};
-      padding-left: ${(props) => (props.width > 768 ? "78px" : "24px")};
-      padding-right: ${(props) => (props.width > 768 ? "78px" : "24px")};
+      gap: ${(props) => (props.width > 860 ? "24px" : "18px")};
+      padding-left: ${(props) => (props.width > 860 ? "78px" : "24px")};
+      padding-right: ${(props) => (props.width > 860 ? "78px" : "24px")};
 
       background-color: ${colors["light"].light_beige};
 
       &-item {
         display: flex;
         flex-direction: row;
-        gap: ${(props) => (props.width > 768 ? "2px" : "0")};
+        gap: ${(props) => (props.width > 860 ? "2px" : "0")};
         align-items: center;
         text-align: center;
         color: ${colors["light"].brown};
       }
 
       &-text {
-        display: ${(props) => (props.width > 768 ? "flex" : "none")};
+        display: flex;
 
         font-family: "Montserrat", sans-serif;
-        font-size: ${(props) => (props.width > 768 ? "14px" : "12px")};
+        font-size: 14px;
         color: ${colors["light"].brown};
       }
     }
 
     &-2 {
-      padding: ${(props) => (props.width > 768 ? "0 78px" : "0 24px")};
+      padding: ${(props) => (props.width > 860 ? "0 78px" : "0 24px")};
       max-width: 100%;
-      height: ${(props) => (props.width > 768 ? "89px" : "65px")};
+      height: ${(props) => (props.width > 860 ? "89px" : "65px")};
 
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: ${(props) =>
-        props.width > 768 ? "flex-start" : "space-between"};
+        props.width > 860 ? "flex-start" : "space-between"};
 
       background-color: ${colors["light"].white};
 
@@ -77,14 +77,14 @@ export const ContentWrapper = styled.div<{ width: number }>`
       }
 
       &-items {
-        display: ${(props) => (props.width > 768 ? "flex" : "none")};
+        display: ${(props) => (props.width > 860 ? "flex" : "none")};
         flex-direction: row;
         gap: 24px;
         align-items: center;
         text-align: center;
 
-        padding-left: ${(props) => (props.width > 768 ? "78px" : "24px")};
-        padding-right: ${(props) => (props.width > 768 ? "78px" : "24px")};
+        padding-left: ${(props) => (props.width > 860 ? "78px" : "24px")};
+        padding-right: ${(props) => (props.width > 860 ? "78px" : "24px")};
       }
     }
   }

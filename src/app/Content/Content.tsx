@@ -12,10 +12,16 @@ import { Footer } from "../../widgets/Footer/Footer";
 import { scrollToTop } from "../../shared/model/scrollToTop";
 import { motion } from "motion/react";
 import { LoadingCard } from "../../widgets/LoadingCard/LoadingCard";
+import { MdInfo } from "react-icons/md";
+import { MobileDrawer } from "../../widgets/MobileDrawer/MobileDrawer";
 
 const Content: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
+  const [mobileDrawer, setMobileDrawer] = React.useState<{
+    isOpen: boolean;
+    type: "location" | "info" | undefined;
+  }>({ isOpen: false, type: undefined });
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -52,6 +58,20 @@ const Content: React.FC = () => {
     queryFn: getRooms,
   });
 
+  const handleOpenDrawer = (type: "location" | "info") => {
+    setMobileDrawer({
+      isOpen: true,
+      type,
+    });
+  };
+
+  const emptyDrawer = () => {
+    setMobileDrawer({
+      isOpen: false,
+      type: undefined,
+    });
+  };
+
   return (
     <ContentWrapper width={width}>
       {loading || isLoading ? (
@@ -73,33 +93,60 @@ const Content: React.FC = () => {
         </motion.div>
       ) : (
         <>
+          <MobileDrawer
+            isOpen={mobileDrawer.isOpen}
+            type={mobileDrawer.type}
+            onClose={emptyDrawer}
+          />
+
           <div className="header-wrapper">
-            <div className="header-1">
-              <div className="header-1-item">
-                <CallIcon className="icon" fontSize="small" />
-                <div className="header-1-text">
-                  +7 (863) 431-47-07, +7 (863) 431-17-07
+            {width > 860 ? (
+              <div className="header-1">
+                <div
+                  className="header-1-item"
+                  // onClick={width <= 860 ? onPhoneClick : undefined}
+                >
+                  <CallIcon className="icon" fontSize="small" />
+                  <div className="header-1-text">
+                    +7 (863) 431-47-07, +7 (863) 431-17-07
+                  </div>
+                </div>
+
+                <div className="header-1-item">
+                  <WatchLaterIcon className="icon" fontSize="small" />
+                  <div className="header-1-text">Пн-Сб 10:00 - 19:00</div>
+                </div>
+
+                <div className="header-1-item">
+                  <LocationOnIcon className="icon" fontSize="small" />
+                  <div className="header-1-text">
+                    г. Таганрог, ул. Петровская 15
+                  </div>
                 </div>
               </div>
+            ) : (
+              <div className="header-1">
+                <div
+                  className="header-1-item"
+                  onClick={() => handleOpenDrawer("info")}
+                >
+                  <MdInfo className="icon" fontSize="medium" />
+                </div>
 
-              <div className="header-1-item">
-                <WatchLaterIcon className="icon" fontSize="small" />
-                <div className="header-1-text">Пн-Сб 10:00 - 19:00</div>
-              </div>
-
-              <div className="header-1-item">
-                <LocationOnIcon className="icon" fontSize="small" />
-                <div className="header-1-text">
-                  г. Таганрог, ул. Петровская 15
+                <div
+                  onClick={() => handleOpenDrawer("location")}
+                  className="header-1-item"
+                >
+                  <LocationOnIcon className="icon" fontSize="small" />
                 </div>
               </div>
-            </div>
+            )}
 
             <div className="header-2">
               <img
                 src="/logo_1.svg"
                 onClick={onHomeClick}
-                alt="Люди! Кухни"
+                alt="Люди!Кухни"
                 className="logo"
               />
 
